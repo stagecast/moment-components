@@ -1,45 +1,47 @@
 <template>
-  <div class="help-box">
-    <button class="help-button" @click="show">?</button>
-      <SCPopupOverlay class="help-overlay" ref="popupOverlay" :canDismiss="onboarded">
-        <!-- header -->
-        <div class="header-info" :class="{ 'with-image': getHeaderImage }">
-          <img v-if="getHeaderImage" :src="getHeaderImage" alt="">
-          <span v-else>{{ title }}</span>
+  <span class="help-box">
+    <button class="help-button" @click="show" v-show="showButton">?</button>
+    <SCPopupOverlay class="help-overlay" ref="popupOverlay" :canDismiss="onboarded" v-on:hide="toggleButton($event)">
+      <!-- header -->
+      <div class="header-info" :class="{ 'with-image': getHeaderImage }">
+        <img v-if="getHeaderImage" :src="getHeaderImage" alt="">
+        <span v-else>{{ title }}</span>
+      </div>
+      <!-- navigation tabs -->
+      <div class="tab-pills">
+        <div v-if="prize" class="tab-title" :class="{selected: isActiveTab(0)}" @click="showTab(0)">
+          <img src="../assets/prize.icon.svg" alt="">
+          Prizes
         </div>
-        <!-- navigation tabs -->
-        <div class="tab-pills">
-          <div v-if="prize" class="tab-title" :class="{selected: isActiveTab(0)}" @click="showTab(0)">
-            <img src="../assets/prize.icon.svg" alt="">
-            Prizes
+        <div v-if="howto" class="tab-title" :class="{selected: isActiveTab(1)}" @click="showTab(1)">How to</div>
+      </div>
+      <!-- body -->
+      <div :class="{ 'bottom-padder': !onboarded }">
+        <!-- tab: prize -->
+        <div class="tab-content" v-if="prize" v-show="isActiveTab(0)">
+          <div class="prize-image" v-if="prize.prizeImage">
+            <img :src="prize.prizeImage" alt="">
           </div>
-          <div v-if="howto" class="tab-title" :class="{selected: isActiveTab(1)}" @click="showTab(1)">How to</div>
-        </div>
-        <!-- body -->
-        <div :class="{ 'bottom-padder': !onboarded }">
-          <!-- tab: prize -->
-          <div class="tab-content" v-if="prize" v-show="isActiveTab(0)">
-            <div class="prize-image" v-if="prize.prizeImage">
-              <img :src="prize.prizeImage" alt="">
-            </div>
-            <div class="prize-headline" v-if="prize.prizeDescriptionHeadline">
-              {{ prize.prizeDescriptionHeadline }}
-            </div>
-            <div class="prize-text" v-if="prize.prizeDescriptionText">
-              {{ prize.prizeDescriptionText }}
-            </div>
+          <div class="prize-headline" v-if="prize.prizeDescriptionHeadline">
+            {{ prize.prizeDescriptionHeadline }}
           </div>
-          <!-- tab: howto -->
-          <div class="tab-content" v-if="howto" v-show="isActiveTab(1)">
-            <ul><li :v-for="(item, index) in howto" :key="index">{{ item }}</li></ul>
+          <div class="prize-text" v-if="prize.prizeDescriptionText">
+            {{ prize.prizeDescriptionText }}
           </div>
         </div>
-        <!-- bottom overlayer -->
-        <div class="start-bottom-overlay" v-if="!onboarded">
-          <button class="start-button" @click="completeOnboarding">Let's Start</button>
+        <!-- tab: howto -->
+        <div class="tab-content" v-if="howto" v-show="isActiveTab(1)">
+          <ul>
+            <li v-for="(item, index) in howto" :key="index">{{ item }}</li>
+          </ul>
         </div>
-      </SCPopupOverlay>
-  </div>
+      </div>
+      <!-- bottom overlayer -->
+      <div class="start-bottom-overlay" v-if="!onboarded">
+        <button class="main-button" @click="completeOnboarding">Let's Start</button>
+      </div>
+    </SCPopupOverlay>
+  </span>
 </template>
 
 <script>
@@ -62,7 +64,7 @@ export default {
     prize: {
       data: Object,
       required: false,
-      default () { return {} }
+      // default () { return {} }
     },
     // TODO: define how title and header image are passed to the modal
     title: {
@@ -73,6 +75,7 @@ export default {
   },
   data: function () {
     return {
+      showButton: true,
       activeTab: 0,
       onboarded: false,
       sessionKey: 'sc:help-onboarded'
@@ -91,7 +94,7 @@ export default {
   mounted: function () {
     window.setTimeout(function () {
       if (!this.isOnboarded()) {
-        this.showPrizeModal()
+        this.show()
       }
     }.bind(this), 300)
   },
@@ -107,6 +110,7 @@ export default {
     },
     /* Open the popup overlay */
     show () {
+      this.showButton = false
       this.onboarded = this.isOnboarded()
       this.$refs.popupOverlay.show()
     },
@@ -118,6 +122,9 @@ export default {
     showTab (number) {
       this.activeTab = number
     },
+    toggleButton () {
+      this.showButton = true
+    },
     isActiveTab (index) {
       return this.activeTab === index
     }
@@ -125,11 +132,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  @import "~normalize.css/normalize.css";
-  @import '../styles/themes';
-  @import "../styles/general";
+<style scoped lang="scss">
 
+  @import '../styles/variables';
+  
   .tab-pills {
     width: calc(100% + 50px);
     display: flex;
@@ -173,7 +179,7 @@ export default {
   }
 
   .help-box {
-    padding-top: 10px;
+    display: inline-block;
 
     .help-button {
       border: none;
@@ -182,11 +188,13 @@ export default {
       border-radius: 4px;
       padding: 5px 13px;
       font-family: $base-font-stack;
-      font-size: 20px;
+      font-size: 21px;
       font-weight: $font-weight-bold;
       line-height: 26px;
       color: var(--text-color-2);
       outline: none;
+      // height: 36px;
+      width: 36px;
 
       &:active {
         color: #fff !important;
@@ -256,28 +264,5 @@ export default {
       padding: 30px 25px 21px 25px;
     }
 
-    .start-button {
-      text-decoration: none;
-      text-align: center;
-      background: var(--btn-color-1);
-      color: var(--btn-text-color-1);
-      border: none;
-      border-radius: 7px;
-      height: 60px;
-      line-height: 60px;
-      width: 100%;
-      font-size: 18px;
-      font-weight: $font-weight-bold;
-      outline: none;
-      display: block;
-      position: relative;
-      padding: 0 50px;
-
-      &:active, &:focus {
-        color: var(--btn-text-color-1) !important;
-        transform: scale(0.97);
-        transition: all .3s ease-out;
-      }
-    }
   }
 </style>

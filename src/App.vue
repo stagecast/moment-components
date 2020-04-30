@@ -1,18 +1,68 @@
 <template>
   <div id="app">
-    <HelpPopup />
+    <div style="margin:10px">
+      <div style="display: inline-block; margin-right:10px;">
+        <SCHelpPopup ref="popup" :howto="howto" :title="title" :momentClass="momentClass"></SCHelpPopup>
+      </div>
+      <div style="display: inline-block;">
+        <SCPrizePopup ref="prize" :manualTrigger="true" :prize="prize"></SCPrizePopup>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelpPopup from './components/HelpPopup.vue'
+import SCHelpPopup from './components/SCHelpPopup.vue'
+import SCPrizePopup from './components/SCPrizePopup.vue'
 
 export default {
   name: 'App',
-  components: { HelpPopup }
+  components: { SCHelpPopup, SCPrizePopup },
+  data: function () {
+    return {
+      prize: {
+        prizeImage: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666',
+        prizeDescriptionHeadline: 'Headling',
+        prizeDescriptionText: 'This is my description text',
+        claimButtonLink: 'https://amazon.it'
+      },
+      momentClass: {
+        custom: {
+          popupHeaderImage: 'https://staging.stagecast.se/api/content/87AAFB81-ABCC-44AF-ADF3-F22C56AEA2F0'
+        }
+      },
+      title: 'Test the Popup',
+      theme: 'light',
+      howto: [
+        'The Quiz has several rounds. The faster you answer the more points you will earn.',
+        'In the end you will get a final score and be ranked in a leaderboard.',
+        'You can replay the quiz as often as you want.',
+        'Every day the leaderboard will reset so everyone has a new chance to win a prize.'
+      ]
+    }
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
+  @import 'styles/main.scss';
 
+  #app {
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-family: $base-font-stack;
+    color: $base-color;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    background: rgb(61,23,239);
+    background: linear-gradient(130deg, rgba(61,23,239,1), rgba(109,83,255,1));
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
 </style>

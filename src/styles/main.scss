@@ -1,0 +1,64 @@
+@import "~normalize.css/normalize.css";
+@import './variables';
+@import './themes';
+
+* {
+  box-sizing: border-box;
+}
+
+.main-button {
+  text-decoration: none;
+  text-align: center;
+  background: var(--btn-color-1);
+  color: var(--btn-text-color-1);
+  border: none;
+  border-radius: 7px;
+  height: 60px;
+  line-height: 60px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  outline: none;
+  display: block;
+  position: relative;
+  padding: 0 50px;
+
+  &:active, &:focus {
+    color: var(--btn-text-color-1) !important;
+    transform: scale(0.97);
+    transition: all .3s ease-out;
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .icon-left {
+    left: 25px;
+  }
+
+  .icon-right {
+    right: 25px;
+  }
+}
+
+.fade-enter-active {
+  animation: fade-in .5s;
+}
+
+.fade-leave-active {
+  animation: fade-in .3s reverse;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(6%)
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%)
+  }
+}

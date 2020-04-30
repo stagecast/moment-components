@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'sc-popup-overlay',
+  name: 'SCPopupOverlay',
   data: function () {
     return {
       visible: false
@@ -38,11 +38,13 @@ export default {
     /* Show the popup */
     show () {
       this.visible = true
+      this.$emit('show', true)
       document.body.style.overflow = 'hidden'
     },
     /* Hide the popup */
     hide () {
       this.visible = false
+      this.$emit('hide', true)
       document.body.style.overflow = 'auto'
     }
   }
@@ -50,7 +52,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../styles/variables";
 
   .popup-overlay {
     position: fixed;
@@ -60,6 +61,7 @@ export default {
     height: 100%;
     overflow-y: auto;
     z-index: 100;
+    background: rgba(23,23,23,.05);
   }
   .popup-box {
     position: relative;

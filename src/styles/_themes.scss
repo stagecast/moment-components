@@ -1,6 +1,4 @@
-@import './variables';
-
-[theme="light"] {
+[theme="light"], :root {
   --bg-color-2: #{$white};
   --bg-color-2-inverted: #{$custom-dark};
   --bg-color-3: #{$dark-10};

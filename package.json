@@ -1,6 +1,6 @@
 {
   "name": "@stagecast/moment-components",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Filippo Boiani",
   "private": false,
   "main": "./dist/moment-components.common.js",
@@ -20,7 +20,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name moment-components src/main.js",
+    "build:lib": "vue-cli-service build --target lib --name moment-components src/lib.js",
     "lint": "vue-cli-service lint"
   },
   "peerDependencies": {
