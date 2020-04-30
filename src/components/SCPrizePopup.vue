@@ -3,7 +3,7 @@
     <button class="prize-button" @click="show" v-if="!manualTrigger">
       <img class="icon" src="../assets/prize.icon.svg" alt="prize">
     </button>
-      <sc-popup-overlay class="prize-overlay" ref="prizeOverlay" :canDismiss="true">
+      <SCPopupOverlay class="prize-overlay" ref="prizeOverlay" :canDismiss="true">
         <div class="header-info won" :class="{ 'with-image': getHeaderImage }">
           <img v-if="getHeaderImage" :src="getHeaderImage" alt="">
           <span v-else>Congratulations! You have won a prize.</span>
@@ -31,7 +31,7 @@
             </svg>
           </a>
         </div>
-      </sc-popup-overlay>
+      </SCPopupOverlay>
   </div>
 </template>
 
@@ -39,15 +39,14 @@
 import SCPopupOverlay from './SCPopupOverlay'
 
 export default {
-  name: 'sc-prize-popup',
+  name: 'SCPrizePopup',
   components: { SCPopupOverlay },
   props: {
     prize: {
       type: Object,
       required: true,
-      default: function () {
-        return {}
-      }
+      default () { return {} }
+
     },
     manualTrigger: {
       type: Boolean,

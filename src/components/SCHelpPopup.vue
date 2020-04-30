@@ -1,7 +1,7 @@
 <template>
   <div class="help-box">
     <button class="help-button" @click="show">?</button>
-      <sc-popup-overlay class="help-overlay" ref="popupOverlay" :canDismiss="onboarded">
+      <SCPopupOverlay class="help-overlay" ref="popupOverlay" :canDismiss="onboarded">
         <!-- header -->
         <div class="header-info" :class="{ 'with-image': getHeaderImage }">
           <img v-if="getHeaderImage" :src="getHeaderImage" alt="">
@@ -38,7 +38,7 @@
         <div class="start-bottom-overlay" v-if="!onboarded">
           <button class="start-button" @click="completeOnboarding">Let's Start</button>
         </div>
-      </sc-popup-overlay>
+      </SCPopupOverlay>
   </div>
 </template>
 
@@ -46,23 +46,23 @@
 import SCPopupOverlay from './SCPopupOverlay'
 
 export default {
-  name: 'sc-help-popup',
+  name: 'SCHelpPopup',
   components: { SCPopupOverlay },
   props: {
     momentClass: {
       data: Object,
       required: true,
-      default: {}
+      default () { return {} }
     },
     howto: {
       data: Array,
       required: true,
-      default: []
+      default () { return [] }
     },
     prize: {
       data: Object,
       required: false,
-      default: {}
+      default () { return {} }
     },
     // TODO: define how title and header image are passed to the modal
     title: {
