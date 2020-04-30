@@ -31,7 +31,7 @@
           </div>
           <!-- tab: howto -->
           <div class="tab-content" v-if="howto" v-show="isActiveTab(1)">
-            <ul><li :v-for="listItem in howto" :key="index">{listItem}</li></ul>
+            <ul><li :v-for="(item, index) in howto" :key="index">{{ item }}</li></ul>
           </div>
         </div>
         <!-- bottom overlayer -->
