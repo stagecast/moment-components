@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     getHeaderImage () {
-      if (this.momentClass) {
+      if (this.momentClass && this.momentClass.custom) {
         let r = this.momentClass.custom.prizeWonTitleImage
         return r ? r : false
       } 

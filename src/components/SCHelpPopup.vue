@@ -84,7 +84,7 @@ export default {
     },
     getHeaderImage () {
       // TODO: define how title and header image are passed to the modal
-      if (this.momentClass) {
+      if (this.momentClass && this.momentClass.custom) {
         let r = this.momentClass.custom.popupHeaderImage
         return r ? r : false
       } 
