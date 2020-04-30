@@ -23,6 +23,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 // allows to import the components in other projects
-export default ComponentLibrary
+export default { ComponentLibrary, SCHelpPopup, SCPrizePopup }
 
 // for more see: https://www.xiegerts.com/post/creating-vue-component-library-plugin/ 

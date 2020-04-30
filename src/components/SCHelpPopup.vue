@@ -79,9 +79,6 @@ export default {
     }
   },
   computed: {
-    isActiveTab (index) {
-      return this.activeTab === index
-    },
     getHeaderImage () {
       // TODO: define how title and header image are passed to the modal
       if (this.momentClass && this.momentClass.custom) {
@@ -120,6 +117,9 @@ export default {
     /* Switch tab */
     showTab (number) {
       this.activeTab = number
+    },
+    isActiveTab (index) {
+      return this.activeTab === index
     }
   }
 }
