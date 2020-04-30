@@ -1,6 +1,6 @@
 <template>
   <span class="help-box">
-    <button class="help-button" @click="show" v-show="showButton">?</button>
+    <button class="help-button" @click="show" :class="{hidden: !showButton}">?</button>
     <SCPopupOverlay class="help-overlay" ref="popupOverlay" :canDismiss="onboarded" v-on:hide="toggleButton($event)">
       <!-- header -->
       <div class="header-info" :class="{ 'with-image': getHeaderImage }">
@@ -58,13 +58,11 @@ export default {
     },
     howto: {
       data: Array,
-      required: true,
-      default () { return [] }
+      required: false,
     },
     prize: {
       data: Object,
       required: false,
-      // default () { return {} }
     },
     // TODO: define how title and header image are passed to the modal
     title: {
@@ -97,6 +95,13 @@ export default {
         this.show()
       }
     }.bind(this), 300)
+
+    if (this.prize) {
+      this.activeTab = 0
+    }
+    if (!this.prize && this.howto) {
+      this.activeTab = 1
+    }
   },
   methods: {
     /* Check if the popup has already been opened once */
@@ -136,6 +141,10 @@ export default {
 
   @import '../styles/variables';
   
+  .hidden {
+    opacity: 0;
+  }
+
   .tab-pills {
     width: calc(100% + 50px);
     display: flex;
@@ -169,7 +178,7 @@ export default {
 
     ul {
       list-style-image: var(--list-style-image);
-      margin: 0 16px;
+      margin: 16px 0;
 
       li {
         line-height: 20px;
@@ -188,8 +197,8 @@ export default {
       border-radius: 4px;
       padding: 5px 13px;
       font-family: $base-font-stack;
-      font-size: 21px;
-      font-weight: $font-weight-bold;
+      font-size: 23px;
+      font-weight: 700;
       line-height: 26px;
       color: var(--text-color-2);
       outline: none;

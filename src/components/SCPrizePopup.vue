@@ -94,7 +94,7 @@ export default {
       border-radius: 4px;
       padding: 5px 7px;
       font-family: $base-font-stack;
-      font-size: 21px;
+      font-size: 23px;
       font-weight: $font-weight-bold;
       line-height: 26px;
       color: var(--text-color-2);

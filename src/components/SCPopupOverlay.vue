@@ -5,7 +5,10 @@
         <div class="popup-box">
           <div class="popup-header">
             <button class="close-button" @click="hide" v-if="canDismiss">
-              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1.41406" width="14" height="2" rx="1" transform="rotate(45 1.41406 0)" fill="#C4C4C4"/>
+                <rect x="11.3137" y="1.41431" width="14" height="2" rx="1" transform="rotate(135 11.3137 1.41431)" fill="#C4C4C4"/>
+              </svg>
             </button>
           </div>
           <div class="popup-content">

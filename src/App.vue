@@ -23,7 +23,7 @@ export default {
       prize: {
         prizeImage: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666',
         prizeDescriptionHeadline: 'Headling',
-        prizeDescriptionText: 'This is my description text',
+        prizeDescriptionText: 'This is my description text. With some other text that follows. Bla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         claimButtonLink: 'https://amazon.it'
       },
       momentClass: {
