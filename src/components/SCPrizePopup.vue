@@ -10,14 +10,14 @@
       </div>
       <div class="bottom-padder">
         <div class="moment-infos">
-          <div class="prize-image" v-if="prize.prizeImage">
-            <img :src="prize.prizeImage" alt="">
+          <div class="prize-image" v-if="prize.picture">
+            <img :src="prize.picture" alt="prize picture">
           </div>
-          <div class="prize-headline" v-if="prize.prizeDescriptionHeadline">
-            {{ prize.prizeDescriptionHeadline }}
+          <div class="prize-headline" v-if="prize.title">
+            {{ prize.title }}
           </div>
-          <div class="prize-text" v-if="prize.prizeDescriptionText">
-            {{ prize.prizeDescriptionText }}
+          <div class="prize-text" v-if="prize.description">
+            {{ prize.description }}
           </div>
         </div>
       </div>
