@@ -1,7 +1,7 @@
 <template>
   <span class="prize-box won">
     <button class="prize-button" @click="show" v-show="manualTrigger">
-      <img class="icon" src="../assets/prize.icon.svg" alt="prize">
+      <img class="icon" src="../../assets/prize.icon.svg" alt="prize">
     </button>
     <SCPopupOverlay class="prize-overlay" ref="prizeOverlay" :canDismiss="true">
       <div class="header-info won" :class="{ 'with-image': getHeaderImage }">
@@ -23,7 +23,7 @@
       </div>
       <div class="claim-prize-overlay">
         <a class="main-button" :href="prize.claimButtonLink" target="_blank">
-          <img class="icon icon-left" src="../assets/prize.icon.svg" alt="">
+          <img class="icon icon-left" src="../../assets/prize.icon.svg" alt="">
           Claim Prize
           <svg class="icon icon-right" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.2678 19.1097H1.96743V5.78748H10.6378L12.2757 4.14951H1.13752C0.678891 4.14951 0.307617 4.52078 0.307617 4.97941V19.9396C0.307617 20.3982 0.678891 20.7695 1.13752 20.7695H16.0758C16.5345 20.7695 16.9057 20.3982 16.9057 19.9396V8.80135L15.2678 10.4393V19.1097Z" fill="var(--btn-text-color-1)"/>
@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import SCPopupOverlay from './SCPopupOverlay'
+import SCPopupOverlay from '../scPopupOverlay/scPopupOverlay'
 
 export default {
-  name: 'SCPrizePopup',
+  name: 'ScPrizePopup',
   components: { SCPopupOverlay },
   props: {
     prize: {
@@ -82,7 +82,7 @@ export default {
 
 <style scoped lang="scss">
 
-  @import '../styles/variables';
+  @import '../../styles/variables';
 
   .prize-box {
     display: inline-block;

@@ -10,7 +10,7 @@
       <!-- navigation tabs -->
       <div class="tab-pills">
         <div v-if="prize" class="tab-title" :class="{selected: isActiveTab(0)}" @click="showTab(0)">
-          <img src="../assets/prize.icon.svg" alt="">
+          <img src="../../assets/prize.icon.svg" alt="">
           Prizes
         </div>
         <div v-if="howto" class="tab-title" :class="{selected: isActiveTab(1)}" @click="showTab(1)">How to</div>
@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import SCPopupOverlay from './SCPopupOverlay'
+import SCPopupOverlay from '../scPopupOverlay/scPopupOverlay'
 
 export default {
-  name: 'SCHelpPopup',
+  name: 'ScHelpPopup',
   components: { SCPopupOverlay },
   props: {
     momentClass: {
@@ -139,7 +139,7 @@ export default {
 
 <style scoped lang="scss">
 
-  @import '../styles/variables';
+  @import '../../styles/variables';
   
   .hidden {
     opacity: 0;

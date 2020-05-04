@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'SCPopupOverlay',
+  name: 'ScPopupOverlay',
   data: function () {
     return {
       visible: false
