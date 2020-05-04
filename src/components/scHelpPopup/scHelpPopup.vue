@@ -5,7 +5,7 @@
       <!-- header -->
       <div class="header-info" :class="{ 'with-image': getHeaderImage }">
         <img v-if="getHeaderImage" :src="getHeaderImage" alt="">
-        <span v-else>{{ title }}</span>
+        <span v-else>{{ option.title }}</span>
       </div>
       <!-- navigation tabs -->
       <div class="tab-pills">
@@ -22,7 +22,7 @@
           {{ t('scComponents.help.tabs.prize') }}
         </div>
         <div v-if="howto" class="tab-title" :class="{selected: isActiveTab(1)}" @click="showTab(1)">{{ t('scComponents.help.tabs.howto') }}</div>
-        <div v-if="share" class="tab-title" :class="{selected: isActiveTab(1)}" @click="showTab(1)">{{ t('scComponents.help.tabs.share') }}</div>
+        <div v-if="share" class="tab-title" :class="{selected: isActiveTab(2)}" @click="showTab(2)">{{ t('scComponents.help.tabs.share') }}</div>
       </div>
       <!-- body -->
       <div :class="{ 'bottom-padder': !onboarded }">
@@ -64,28 +64,26 @@ export default {
   name: 'ScHelpPopup',
   components: { SCPopupOverlay },
   props: {
-    momentClass: {
+    options: {
       data: Object,
-      required: true,
-      default () { return {} }
+      required: false,
+      default () { 
+        return {
+          title: 'Moment Help',
+          headerImg: null,
+          tabs: {}
+        } 
+      }
     },
     howto: {
       data: Array,
       required: false,
     },
-    share: {
-
-    },
+    share: String,
     prize: {
       data: Object,
       required: false,
-    },
-    // TODO: define how title and header image are passed to the modal
-    title: {
-      type: String,
-      required: true,
-      default: ''
-    }
+    }    
   },
   data: function () {
     return {
@@ -97,9 +95,8 @@ export default {
   },
   computed: {
     getHeaderImage () {
-      // TODO: define how title and header image are passed to the modal
-      if (this.momentClass && this.momentClass.custom) {
-        let r = this.momentClass.custom.popupHeaderImage
+      if (this.options) {
+        let r = this.options.headerImg
         return r ? r : false
       } 
       return false
@@ -112,11 +109,14 @@ export default {
       }
     }.bind(this), 300)
 
-    if (this.prize) {
-      this.activeTab = 0
-    }
-    if (!this.prize && this.howto) {
-      this.activeTab = 1
+    let i = 0;
+    for (let propName in ['prize', 'howto', 'share']) {
+      if (this.props[propName]) {
+        this.showTab(i)
+        break
+      } else {
+        i++
+      }
     }
   },
   methods: {
