@@ -2,22 +2,19 @@
   <div id="app">
     <div style="margin:10px">
       <div style="display: inline-block; margin-right:10px;">
-        <SCHelpPopup ref="popup" :howto="howto" :title="title" :momentClass="momentClass"></SCHelpPopup>
+        <sc-help-popup ref="popup" :howto="howto" :options="{ title }" :share="share"></sc-help-popup>
       </div>
       <div style="display: inline-block;">
-        <SCPrizePopup ref="prize" :manualTrigger="true" :prize="prize"></SCPrizePopup>
+        <sc-prize-popup ref="prize" :manualTrigger="true" :prize="prize"></sc-prize-popup>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import SCHelpPopup from './components/SCHelpPopup.vue'
-import SCPrizePopup from './components/SCPrizePopup.vue'
-
 export default {
   name: 'App',
-  components: { SCHelpPopup, SCPrizePopup },
+  components: { },
   data: function () {
     return {
       prize: {
@@ -33,6 +30,7 @@ export default {
       },
       title: 'Test the Popup',
       theme: 'light',
+      share: 'https://test.com',
       howto: [
         'The Quiz has several rounds. The faster you answer the more points you will earn.',
         'In the end you will get a final score and be ranked in a leaderboard.',

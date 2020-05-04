@@ -1,6 +1,6 @@
 {
   "name": "@stagecast/moment-components",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "Filippo Boiani",
   "private": false,
   "main": "./dist/moment-components.common.js",
@@ -27,6 +27,7 @@
     "vue": "^2.6.11"
   },
   "dependencies": {
+    "vue": "^2.6.11",
     "core-js": "^3.6.4",
     "deepmerge": "^4.2.2",
     "normalize.css": "^8.0.1"

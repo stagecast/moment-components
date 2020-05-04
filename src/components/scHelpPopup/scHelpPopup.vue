@@ -5,7 +5,7 @@
       <!-- header -->
       <div class="header-info" :class="{ 'with-image': getHeaderImage }">
         <img v-if="getHeaderImage" :src="getHeaderImage" alt="">
-        <span v-else>{{ option.title }}</span>
+        <span v-else>{{ options.title }}</span>
       </div>
       <!-- navigation tabs -->
       <div class="tab-pills">
@@ -46,7 +46,7 @@
         </div>
         <!-- tab: share -->
         <div class="tab-content" v-if="share" v-show="isActiveTab(2)">
-          <p class="headline">{{ t('scComponents.help.share.title') }}</p>
+          <p>{{ t('scComponents.help.share.title') }}</p>
         </div>
       </div>
       <!-- bottom overlayer -->
@@ -75,15 +75,9 @@ export default {
         } 
       }
     },
-    howto: {
-      data: Array,
-      required: false,
-    },
+    howto: Array,
     share: String,
-    prize: {
-      data: Object,
-      required: false,
-    }    
+    prize: Object    
   },
   data: function () {
     return {
@@ -109,14 +103,12 @@ export default {
       }
     }.bind(this), 300)
 
-    let i = 0;
-    for (let propName in ['prize', 'howto', 'share']) {
-      if (this.props[propName]) {
-        this.showTab(i)
+    let tabs = ['prize', 'howto', 'share']
+    for (let index in tabs) {
+      if (this[tabs[index]]) {
+        this.showTab(parseInt(index))
         break
-      } else {
-        i++
-      }
+      } 
     }
   },
   methods: {
