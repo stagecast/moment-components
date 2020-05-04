@@ -1,5 +1,6 @@
 import * as scComponents from './components'
 import locale from './locale';
+import localeMixin from './mixin/locale'
 
 const install = (Vue, options = {}) => {
   locale.use(options.locale);
@@ -9,6 +10,8 @@ const install = (Vue, options = {}) => {
   Object.values(scComponents).forEach((scComponent) => {
     Vue.use(scComponent)
   })
+
+  Vue.mixin({...localeMixin})
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
