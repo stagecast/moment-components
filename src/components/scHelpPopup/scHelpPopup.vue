@@ -59,6 +59,7 @@
 
 <script>
 import SCPopupOverlay from '../scPopupOverlay/scPopupOverlay'
+import '../../styles/main.scss'
 
 export default {
   name: 'ScHelpPopup',

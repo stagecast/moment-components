@@ -1,14 +1,13 @@
 {
   "name": "@stagecast/moment-components",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "author": "Filippo Boiani",
   "private": false,
   "main": "./dist/moment-components.common.js",
   "unpkg": "./dist/moment-components.umd.min.js",
   "jsdelivr": "./dist/moment-components.umd.min.js",
   "files": [
-    "dist/*",
-    "src/*"
+    "lib/*"
   ],
   "repository": {
     "type": "git",
