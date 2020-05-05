@@ -173,6 +173,10 @@ export default {
       line-height: 28px;
       color: var(--text-color-1);
       margin: -55px -25px 5px -25px;
+      min-height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &.won {
         background: linear-gradient(90deg, #eec868 0%, #e49358 100%);
