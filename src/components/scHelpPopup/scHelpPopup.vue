@@ -60,7 +60,7 @@
                 </svg>
               </span>
             </div>
-            <input id="copy-to-clipboard" class="form-control" :value="share" disabled/>
+            <input type="text" id="copy-to-clipboard" class="form-control" :value="share" disabled/>
           </div>
         </div>
       </div>
@@ -166,11 +166,13 @@ export default {
     },
     copyToClipboard () {
       const copyText = document.getElementById('copy-to-clipboard')
+      copyText.removeAttribute("disabled")
       copyText.select()
       /* For mobile devices */
       copyText.setSelectionRange(0, 99999)
-      document.execCommand("copy")
+      document.execCommand('copy')
       this.copiedToClipboard = true
+      copyText.disabled = true
     }
   }
 }
@@ -180,6 +182,12 @@ export default {
 
   @import '../../styles/variables';
   
+
+  ::selection {
+    color: var(--text-color-1-inverted);
+    background: var(--bg-color-2-inverted);
+  }
+
   .bg-dark {
     background: var(--bg-color-2-inverted) !important;
   }
