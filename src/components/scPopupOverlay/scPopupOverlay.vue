@@ -69,6 +69,7 @@ export default {
   .popup-box {
     position: relative;
     width: 96%;
+    max-width: 400px;
     margin: 10px auto;
     background: var(--bg-color-2);
     color: var(--text-color-1);
@@ -86,6 +87,7 @@ export default {
 
   .popup-content {
     padding: 5px;
+    min-height: 380px;
   }
 
   .close-button {

@@ -47,6 +47,21 @@
         <!-- tab: share -->
         <div class="tab-content" v-if="share" v-show="isActiveTab(2)">
           <p>{{ t('scComponents.help.share.title') }}</p>
+          <div class="input-group" @click="copyToClipboard($event)">
+            <div class="input-group-prepend" :class="buttonClasses">
+              <span>
+                <svg v-if="!copiedToClipboard" width="24" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.142 19.9639C12.6358 19.9639 11.1586 19.3846 10 18.255L7.71183 15.9668C7.2484 15.5034 7.2484 14.7792 7.71183 14.3158C8.17527 13.8524 8.89939 13.8524 9.36282 14.3158L11.651 16.604C13.0413 17.9943 15.2716 17.9943 16.633 16.604C18.0233 15.2137 18.0233 12.9834 16.633 11.6221L14.3447 9.33388C13.8813 8.87044 13.8813 8.14632 14.3447 7.68289C14.8082 7.21945 15.5323 7.21945 15.9957 7.68289L18.2839 9.9711C20.5722 12.2593 20.5722 15.9668 18.2839 18.226C17.1254 19.3846 15.6482 19.9639 14.142 19.9639Z" fill="white"/>
+                  <path d="M4.81538 12.5779C4.52573 12.5779 4.23609 12.4621 4.00437 12.2303L1.71616 9.9711C-0.572053 7.68288 -0.572053 3.9754 1.71616 1.71616C4.00437 -0.572053 7.71185 -0.572053 9.9711 1.71616L12.2593 4.00437C12.7227 4.4678 12.7227 5.19192 12.2593 5.65536C11.7959 6.11879 11.0718 6.11879 10.6083 5.65536L8.32011 3.36715C7.65392 2.70096 6.75601 2.32442 5.82914 2.32442C4.87331 2.32442 4.00437 2.70096 3.33818 3.36715C1.94788 4.75745 1.94788 6.98773 3.33818 8.34907L5.62639 10.6373C6.08983 11.1007 6.08983 11.8248 5.62639 12.2883C5.42364 12.4621 5.10503 12.5779 4.81538 12.5779Z" fill="white"/>
+                  <path d="M11.8535 12.9834C11.5639 12.9834 11.2742 12.8676 11.0425 12.6358L7.30607 8.92837C6.84264 8.46493 6.84264 7.74081 7.30607 7.27738C7.76951 6.81394 8.49362 6.81394 8.95706 7.27738L12.6935 11.0138C13.1569 11.4773 13.1569 12.2014 12.6935 12.6648C12.4618 12.8676 12.1721 12.9834 11.8535 12.9834Z" fill="white"/>
+                </svg>
+                <svg v-else width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.25948 10.9476L9.16157 17L18.5233 1.79999" stroke="white" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <input id="copy-to-clipboard" class="form-control" :value="share" disabled/>
+          </div>
         </div>
       </div>
       <!-- bottom overlayer -->
@@ -85,10 +100,17 @@ export default {
       showButton: true,
       activeTab: 0,
       onboarded: false,
-      sessionKey: 'sc:help-onboarded'
+      sessionKey: 'sc:help-onboarded',
+      copiedToClipboard: false
     }
   },
   computed: {
+    buttonClasses () {
+      return {
+        'bg-dark': !this.copiedToClipboard,
+        'bg-green': this.copiedToClipboard,
+      }
+    },
     getHeaderImage () {
       if (this.options) {
         let r = this.options.headerImg
@@ -123,7 +145,7 @@ export default {
       this.hide()
     },
     /* Open the popup overlay */
-    show () {
+    async show () {
       this.showButton = false
       this.onboarded = this.isOnboarded()
       this.$refs.popupOverlay.show()
@@ -141,6 +163,14 @@ export default {
     },
     isActiveTab (index) {
       return this.activeTab === index
+    },
+    copyToClipboard () {
+      const copyText = document.getElementById('copy-to-clipboard')
+      copyText.select()
+      /* For mobile devices */
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy")
+      this.copiedToClipboard = true
     }
   }
 }
@@ -150,6 +180,81 @@ export default {
 
   @import '../../styles/variables';
   
+  .bg-dark {
+    background: var(--bg-color-2-inverted) !important;
+  }
+
+  .bg-green {
+    background: $color-green !important;
+  }
+  .input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    margin: 20px 0;
+
+    &:focus-within {
+      .input-group-prepend {
+        border-color: var(--input-color-2);
+      }
+    }
+
+    .input-group-prepend {
+      display: flex;
+      border-right: none;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+      height: 50px;
+      background: var(--bg-color-2-inverted);
+
+      span {
+        display: flex;
+        align-items: center;
+        padding: .375rem .75rem;
+        margin-bottom: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+    }
+    .form-control {
+      position: relative;
+      flex: 1 1 auto;
+      width: 1%;
+      border-radius: 7px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border: 2px solid var(--bg-color-4);
+      border-left: none;
+      height: 50px;
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: $font-weight-bold;
+      font-size: 18px;
+      line-height: 30px;
+
+      background: var(--input-color-1);
+      color: var(--input-text-color-1);
+      padding-left: 18px;
+      padding-right: 18px;
+      outline: none;
+      transition: all .3s ease-in;
+
+      &::-webkit-input-placeholder,
+      &:-moz-placeholder,
+      &:-moz-placeholder,
+      &:-ms-input-placeholder {
+        color: rgba(23, 23, 23, 0.2);
+      }
+
+      &:focus {
+        border-color: var(--input-color-2);
+      }
+    }
+  }
+
   .hidden {
     opacity: 0;
   }

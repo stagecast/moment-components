@@ -1,11 +1,13 @@
-import defaultLang from './lang/en';
 import Vue from 'vue';
 import deepmerge from 'deepmerge';
 import Format from './format';
 
+import defaultLang from './lang/en';
+
 const format = Format(Vue)
 let lang = defaultLang
 let merged = false
+
 let i18nHandler = function() {
   const vuei18n = Object.getPrototypeOf(this || Vue).$t
   if (typeof vuei18n === 'function' && !!Vue.locale) {
