@@ -1,7 +1,7 @@
 <template>
   <span class="help-box">
     <button class="help-button" @click="show" :class="{hidden: !showButton}">?</button>
-    <SCPopupOverlay class="help-overlay" ref="popupOverlay" :canDismiss="onboarded" v-on:hide="toggleButton($event)">
+    <SCPopupOverlay ref="popupOverlay" :canDismiss="onboarded" v-on:hide="toggleButton($event)">
       <!-- header -->
       <div class="header-info" :class="{ 'with-image': getHeaderImage }">
         <img v-if="getHeaderImage" :src="getHeaderImage" alt="">
