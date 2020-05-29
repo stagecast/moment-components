@@ -6,7 +6,7 @@
           <div class="popup-box">
             <div class="popup-header">
               <button class="close-button" @click="hide" v-if="canDismiss">
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="1.41406" width="14" height="2" rx="1" transform="rotate(45 1.41406 0)" fill="#C4C4C4"/>
                   <rect x="11.3137" y="1.41431" width="14" height="2" rx="1" transform="rotate(135 11.3137 1.41431)" fill="#C4C4C4"/>
                 </svg>
@@ -93,16 +93,16 @@ export default {
   .close-button {
     width: 30px;
     height: 30px;
-    border: none;
+    border: 1px solid #C4C4C4;
     padding: 0;
     border-radius: 30px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background: var(--text-color-2);
+    background: #848484;
     color: var(--text-color-1-inverted);
     outline: none;
-    opacity: 0.5;
+    // opacity: 0.5;
 
     &:active, &:focus {
       transform: scale(0.85);

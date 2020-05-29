@@ -21,6 +21,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:lib": "vue-cli-service build --target lib --name moment-components src/lib.js",
+    "build:wc": "vue-cli-service build --target wc --name moment-components src/wc.js",
     "lint": "vue-cli-service lint"
   },
   "peerDependencies": {

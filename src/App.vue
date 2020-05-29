@@ -5,7 +5,7 @@
         <sc-help-popup ref="popup" :howto="howto" :options="{ title }" :share="share"></sc-help-popup>
       </div>
       <div style="display: inline-block;">
-        <sc-prize-popup ref="prize" :manualTrigger="true" :prize="prize"></sc-prize-popup>
+        <sc-prize-popup ref="prize" :options="{}" :manualTrigger="true" :prize="prize"></sc-prize-popup>
       </div>
     </div>
   </div>
