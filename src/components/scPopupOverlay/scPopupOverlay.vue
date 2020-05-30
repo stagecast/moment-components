@@ -91,8 +91,8 @@ export default {
   }
 
   .close-button {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     border: 1px solid #C4C4C4;
     padding: 0;
     border-radius: 30px;
@@ -102,6 +102,10 @@ export default {
     background: #848484;
     color: var(--text-color-1-inverted);
     outline: none;
+    position: absolute;
+    z-index: 1000;
+    right: 12px;
+    top: 12px;
     // opacity: 0.5;
 
     &:active, &:focus {
