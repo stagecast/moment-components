@@ -66,7 +66,20 @@
       </div>
       <!-- bottom overlayer -->
       <div class="start-bottom-overlay" v-if="!onboarded">
-        <button class="main-button" @click="completeOnboarding">{{ t('scComponents.help.start') }}</button>
+        <div>
+          <label class="mc-checkbox">
+            <span style="word-break: break-all;">{{ t('scComponents.help.accept') }}
+              <a href="https://www.stagecast.io/terms-and-conditions" target="__blank">{{ t('scComponents.help.tos') }}</a>
+              <template v-if="prize && prize.rulesDocUrl">
+                {{ t('scComponents.help.and') }}
+                <a :href="prize.rulesDocUrl" target="__blank"> {{ t('scComponents.help.prizeterms') }}.</a>
+              </template>
+            </span>
+            <input type="checkbox" value="true" v-model="checkbox">
+            <span class="mc-checkmark"></span>
+          </label>
+        </div>
+        <button class="main-button" :disabled="!checkbox" :class="{disabled: !checkbox}" @click="completeOnboarding">{{ t('scComponents.help.start') }}</button>
       </div>
     </SCPopupOverlay>
   </span>
@@ -101,7 +114,8 @@ export default {
       activeTab: 0,
       onboarded: false,
       sessionKey: 'sc:help-onboarded',
-      copiedToClipboard: false
+      copiedToClipboard: false,
+      checkbox: false
     }
   },
   computed: {
@@ -141,6 +155,9 @@ export default {
     },
     /* Save the state and close the popup */
     completeOnboarding () {
+      if (!this.checkbox) {
+        return
+      }
       window.sessionStorage.setItem(this.sessionKey, true)
       this.hide()
     },
@@ -182,7 +199,6 @@ export default {
 
   @import '../../styles/variables';
   
-
   ::selection {
     color: var(--text-color-1-inverted);
     background: var(--bg-color-2-inverted);
@@ -191,7 +207,6 @@ export default {
   .bg-dark {
     background: var(--bg-color-2-inverted) !important;
   }
-
   .bg-green {
     background: $color-green !important;
   }
@@ -237,7 +252,7 @@ export default {
       border: 2px solid var(--bg-color-4);
       border-left: none;
       height: 50px;
-      font-family: Source Sans Pro;
+      font-family: $base-font-stack;
       font-style: normal;
       font-weight: $font-weight-bold;
       font-size: 18px;
@@ -263,6 +278,13 @@ export default {
     }
   }
 
+  a {
+    color: var(--text-color-1);
+    &:active, &:hover, &:visited {
+      color: var(--text-color-2)
+    }
+  }
+  
   .hidden {
     opacity: 0;
   }
@@ -350,7 +372,7 @@ export default {
     }
 
     .bottom-padder {
-      padding-bottom: 71px;
+      padding-bottom: 106px;
     }
 
     .prize-image {
@@ -397,7 +419,7 @@ export default {
       width: 100%;
       background: var(--bg-color-1);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-      padding: 30px 25px 21px 25px;
+      padding: 20px 25px 21px 25px;
     }
 
   }

@@ -7,6 +7,81 @@
   box-sizing: border-box;
 }
 
+/* The mc-checkbox */
+.mc-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: $base-font-stack;
+  font-style: normal;
+  font-weight: $font-weight-bold;
+  font-size: 14px;
+  line-height: 23px;
+}
+
+/* Hide the browser's default checkbox */
+.mc-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.mc-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 23px;
+  width: 23px;
+  background-color: transparent;
+  border: 2px solid var(--btn-color-1);
+  border-radius: 6px;
+}
+
+/* On mouse-over, add a grey background color */
+.mc-checkbox:hover input ~ .mc-checkmark {
+  background-color: var(--input-color-2);
+}
+
+/* When the checkbox is checked, add a blue background */
+.mc-checkbox input:checked ~ .mc-checkmark {
+  background-color: var(--btn-color-1);
+}
+
+/* Create the mc-checkmark/indicator (hidden when not checked) */
+.mc-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the mc-checkmark when checked */
+.mc-checkbox input:checked ~ .mc-checkmark:after {
+  display: block;
+  background-image: var(--checkbox-icon);
+}
+
+/* Style the mc-checkmark/indicator */
+.mc-checkbox .mc-checkmark:after {
+  left: 0;
+  top: 0px;
+  width: 23px;
+  height: 23px;
+  display: block;
+  background-size: 66%;
+  background-position: 25% 25%;
+  background-repeat: no-repeat;
+}
+
 .main-button {
   text-decoration: none;
   text-align: center;
@@ -28,6 +103,11 @@
     color: var(--btn-text-color-1) !important;
     transform: scale(0.97);
     transition: all .3s ease-out;
+  }
+
+  &:disabled, &.disabled {
+    opacity: 0.5;
+    user-select: none;
   }
 
   .icon {
@@ -61,5 +141,17 @@
   100% {
     opacity: 1;
     transform: translateY(0%)
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main-button {
+    height: 40px;
+    line-height: 40px;
+  }
+
+  .mc-checkbox {
+    font-size: 12px;
+    line-height: 18px;
   }
 }

@@ -9,7 +9,11 @@ export default {
       start: 'Starta!',
       share: {
         title: 'Dela länken nedan till dina vänner så att dom kan vara med dig och delta i deras webläsare.'
-      }
+      },
+      accept: 'Jag accepterar',
+      and: 'och',
+      tos: 'villkoren',
+      prizeterms: 'tävlingsreglerna'
     },
     prize: {
       congrats: 'Grattis! Du har vunnit!',

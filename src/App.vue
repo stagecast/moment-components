@@ -2,10 +2,10 @@
   <div id="app">
     <div style="margin:10px">
       <div style="display: inline-block; margin-right:10px;">
-        <sc-help-popup ref="popup" :howto="howto" :options="{ title }" :share="share"></sc-help-popup>
+        <sc-help-popup ref="popup" :prize="prize" :howto="howto" :options="{ title }" :share="share"></sc-help-popup>
       </div>
       <div style="display: inline-block;">
-        <sc-prize-popup ref="prize" :options="{}" :manualTrigger="true" :prize="prize"></sc-prize-popup>
+        <sc-prize-popup ref="prize" :options="prizeOptions" :manualTrigger="true" :prize="prize"></sc-prize-popup>
       </div>
     </div>
   </div>
@@ -18,10 +18,16 @@ export default {
   data: function () {
     return {
       prize: {
-        prizeImage: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666',
-        prizeDescriptionHeadline: 'Headling',
-        prizeDescriptionText: 'This is my description text. With some other text that follows. Bla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        claimButtonLink: 'https://amazon.it'
+        picture: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666',
+        title: 'Headling',
+        description: 'This is my description text. With some other text that follows. Bla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        claimButtonLink: 'https://amazon.it',
+        rulesDocUrl: 'https://www.stagecast.io/effective-audience-activation',
+      },
+      prizeOptions: {
+        winDescription: 'Win Desc',
+        winTitle: 'title test',
+        winHeaderImg: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666'
       },
       momentClass: {
         custom: {
