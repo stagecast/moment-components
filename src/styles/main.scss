@@ -99,14 +99,14 @@
   position: relative;
   padding: 0 50px;
 
-  &:active, &:focus {
+  &:not(:disabled):active, &:not(:disabled):focus {
     color: var(--btn-text-color-1) !important;
     transform: scale(0.97);
     transition: all .3s ease-out;
   }
 
   &:disabled, &.disabled {
-    opacity: 0.5;
+    opacity: 0.1;
     user-select: none;
   }
 
