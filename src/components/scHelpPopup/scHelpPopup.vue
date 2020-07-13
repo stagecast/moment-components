@@ -69,10 +69,10 @@
         <div>
           <label class="mc-checkbox">
             <span style="word-break: break-all;">{{ t('scComponents.help.accept') }}
-              <a href="https://www.stagecast.io/terms-and-conditions" target="__blank">{{ t('scComponents.help.tos') }}</a>
+              <a href="https://www.stagecast.io/terms-and-conditions" target="termsandconditions" rel="nofollow noopener noreferrer">{{ t('scComponents.help.tos') }}</a>
               <template v-if="prize && prize.rulesDocUrl">
                 {{ t('scComponents.help.and') }}
-                <a :href="prize.rulesDocUrl" target="__blank"> {{ t('scComponents.help.prizeterms') }}.</a>
+                <a href="{{prize.rulesDocUrl}}" target="competitionrules" rel="nofollow noopener noreferrer"> {{ t('scComponents.help.prizeterms') }}.</a>
               </template>
             </span>
             <input type="checkbox" value="true" v-model="checkbox">
