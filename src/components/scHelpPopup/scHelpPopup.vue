@@ -72,7 +72,7 @@
               <a href="https://www.stagecast.io/terms-and-conditions" target="termsandconditions" rel="nofollow noopener noreferrer">{{ t('scComponents.help.tos') }}</a>
               <span v-if="prize && prize.rulesDocUrl">
                 {{ t('scComponents.help.and') }}
-                <a :href="prize.rulesDocUrl" target="competitionrules" rel="nofollow noopener noreferrer"> {{ t('scComponents.help.prizeterms') }}.</a>
+                <span class="link" @click="openPrizeRules($event)">{{ t('scComponents.help.prizeterms') }}</span>
               </span>
             </span>
             <input type="checkbox" value="true" v-model="checkbox">
@@ -81,6 +81,9 @@
         </div>
         <button class="main-button" :disabled="!checkbox" :class="{disabled: !checkbox}" @click="completeOnboarding">{{ t('scComponents.help.start') }}</button>
       </div>
+    </SCPopupOverlay>
+    <SCPopupOverlay ref="termsPopup">
+      <iframe class="iframe-view" :title="t('scComponents.help.prizeterms')" :src="prize.rulesDocUrl"></iframe>
     </SCPopupOverlay>
   </span>
 </template>
@@ -167,6 +170,9 @@ export default {
       this.onboarded = this.isOnboarded()
       this.$refs.popupOverlay.show()
     },
+    openPrizeRules () {
+      this.$refs.termsPopup.show()
+    },
     /* Close the popup overlay */
     hide () {
       this.$refs.popupOverlay.hide()
@@ -199,6 +205,13 @@ export default {
 
   @import '../../styles/variables';
   
+  .iframe-view {
+    margin: -52px -25px;
+    width: calc(100% + 50px);
+    height: calc(100vh - 60px);
+    border: 0;
+  }
+
   ::selection {
     color: var(--text-color-1-inverted);
     background: var(--bg-color-2-inverted);
@@ -278,7 +291,8 @@ export default {
     }
   }
 
-  a {
+  a, .link {
+    text-decoration: underline;
     color: var(--text-color-1);
     &:active, &:hover, &:visited {
       color: var(--text-color-2)
