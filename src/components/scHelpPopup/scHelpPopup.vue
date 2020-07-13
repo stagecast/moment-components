@@ -82,9 +82,6 @@
         <button class="main-button" :disabled="!checkbox" :class="{disabled: !checkbox}" @click="completeOnboarding">{{ t('scComponents.help.start') }}</button>
       </div>
     </SCPopupOverlay>
-    <SCPopupOverlay ref="termsPopup">
-      <iframe class="iframe-view" :title="t('scComponents.help.prizeterms')" :src="prize.rulesDocUrl"></iframe>
-    </SCPopupOverlay>
   </span>
 </template>
 
@@ -171,7 +168,8 @@ export default {
       this.$refs.popupOverlay.show()
     },
     openPrizeRules () {
-      this.$refs.termsPopup.show()
+      const windowReference = window.open('', 'competitionrules')
+      windowReference.location = this.prize.rulesDocUrl
     },
     /* Close the popup overlay */
     hide () {
