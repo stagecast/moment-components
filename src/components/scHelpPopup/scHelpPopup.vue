@@ -72,7 +72,7 @@
               <a href="https://www.stagecast.io/terms-and-conditions" target="termsandconditions" rel="nofollow noopener noreferrer">{{ t('scComponents.help.tos') }}</a>
               <span v-if="prize && prize.rulesDocUrl">
                 {{ t('scComponents.help.and') }}
-                <span class="link" @click="openPrizeRules($event)">{{ t('scComponents.help.prizeterms') }}</span>
+                <a :href="prize.rulesDocUrl" :download="t('scComponents.help.prizeterms')">{{ t('scComponents.help.prizeterms') }}</a>
               </span>
             </span>
             <input type="checkbox" value="true" v-model="checkbox">
