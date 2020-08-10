@@ -11,7 +11,7 @@ export default {
       share: {
         title: 'Kopiere den Link und schicke ihn deinen Freunden, damit sie in ihrem Browser ebenfalls teilnehmen können.'
       },
-      accept: 'Ich aktzeptiere die',
+      accept: 'Ich akzeptiere die',
       and: 'und die',
       tos: 'allgemeinen Geschäftsbedingungen',
       prizeterms: 'Gewinnspielbedingungen'
