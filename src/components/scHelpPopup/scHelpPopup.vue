@@ -37,6 +37,9 @@
           <div class="prize-text" v-if="prize.description">
             {{ prize.description }}
           </div>
+          <div class="prize-learnmore" v-if="prize.learnMoreTitle && prize.learnMoreUrl">
+            <a :href="prize.learnMoreUrl" target="learnmore" rel="nofollow noopener noreferrer">{{ prize.learnMoreTitle }}</a>
+          </div>
         </div>
         <!-- tab: howto -->
         <div class="tab-content" v-if="howto" v-show="isActiveTab(1)">
@@ -402,6 +405,11 @@ export default {
       font-size: 20px;
       line-height: 25px;
       margin: 20px 0;
+    }
+
+    .prize-learnmore {
+      padding-top: 20px;
+      font-weight: bold;
     }
 
     .header-info {
