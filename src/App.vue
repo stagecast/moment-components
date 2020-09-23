@@ -27,6 +27,7 @@ export default {
         learnMoreUrl: 'https://www.stagecast.io/guides-tutorials'
       },
       prizeOptions: {
+        claimError: 'The prize was already claimed.',
         winDescription: 'Win Desc',
         winTitle: 'title test',
         winHeaderImg: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666'
@@ -46,6 +47,9 @@ export default {
         'Every day the leaderboard will reset so everyone has a new chance to win a prize.'
       ]
     }
+  },
+  mounted: function () {
+    this.$refs.prize.show()
   }
 }
 </script>
