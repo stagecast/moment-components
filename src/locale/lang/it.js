@@ -12,7 +12,7 @@ export default {
       },
       accept: 'Accetto',
       and: 'e',
-      tos: 'termini & condizioni',
+      tos: 'termini di utilizzo',
       prizeterms: 'regolamento'
     },
     prize: {
