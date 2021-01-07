@@ -20,10 +20,10 @@ export default {
       prize: {
         picture: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666',
         title: 'Headling',
-        description: 'This is my description text. With some other text that follows. Bla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        description: 'This is my description text. With some other text that follows.\n\nBla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         claimButtonLink: 'https://amazon.it',
         rulesDocUrl: 'https://d2cb7i0wbc0znj.cloudfront.net/api/content/6ADC2578-8BAA-4201-AF6E-620D43387F8B',
-        learnMoreTitle: 'Lear More Here',
+        learnMoreTitle: '!!! Learn More Here !!!',
         learnMoreUrl: 'https://www.stagecast.io/guides-tutorials'
       },
       prizeOptions: {

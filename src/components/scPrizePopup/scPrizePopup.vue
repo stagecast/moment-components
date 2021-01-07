@@ -17,7 +17,7 @@
         <span v-else>{{ t('scComponents.prize.congrats') }}</span>
       </div>
       <div class="bottom-padder">
-        <div class="moment-infos">
+        <div class="moment-infos" dir="auto">
           <div class="prize-image" v-if="prize.picture">
             <img :src="prize.picture" alt="prize picture">
           </div>
@@ -156,7 +156,7 @@ export default {
     }
 
     .moment-infos {
-      text-align: left;
+      // text-align: left;
       padding-bottom: 40px;
     }
 
@@ -175,6 +175,9 @@ export default {
       font-size: 20px;
       line-height: 25px;
       margin: 20px 0;
+    }
+    .prize-text {
+      white-space: pre-line;
     }
 
     .header-info {

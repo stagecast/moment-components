@@ -27,7 +27,7 @@
       <!-- body -->
       <div :class="{ 'bottom-padder': !onboarded }">
         <!-- tab: prize -->
-        <div class="tab-content" v-if="prize" v-show="isActiveTab(0)">
+        <div class="tab-content" dir="auto" v-if="prize" v-show="isActiveTab(0)">
           <div class="prize-image" v-if="prize.picture">
             <img :src="prize.picture" alt="">
           </div>
@@ -42,13 +42,13 @@
           </div>
         </div>
         <!-- tab: howto -->
-        <div class="tab-content" v-if="howto" v-show="isActiveTab(1)">
+        <div class="tab-content" dir="auto" v-if="howto" v-show="isActiveTab(1)">
           <ul>
             <li v-for="(item, index) in howto" :key="index">{{ item }}</li>
           </ul>
         </div>
         <!-- tab: share -->
-        <div class="tab-content" v-if="share" v-show="isActiveTab(2)">
+        <div class="tab-content" dir="auto" v-if="share" v-show="isActiveTab(2)">
           <p>{{ t('scComponents.help.share.title') }}</p>
           <div class="input-group" @click="copyToClipboard($event)">
             <div class="input-group-prepend" :class="buttonClasses">
@@ -337,7 +337,7 @@ export default {
   }
 
   .tab-content {
-    text-align: left;
+    // text-align: left;
     padding-bottom: 40px;
 
     ul {
@@ -407,7 +407,7 @@ export default {
       margin: 20px 0;
     }
     .prize-text {
-      white-space: pre-wrap;
+      white-space: pre-line;
     }
     .prize-learnmore {
       padding-top: 20px;
@@ -444,5 +444,30 @@ export default {
       padding: 20px 25px 21px 25px;
     }
 
+  }
+
+
+  .rtl, [dir="rtl"] {
+    .input-group {
+      .form-control {
+        border-right: none;
+        border-left: 2px solid var(--bg-color-4);
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+      }
+      .input-group-prepend {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+    }
+
+    ul {
+      list-style-image: var(--list-style-image-rtl);
+      margin: 16px 0;
+    }
   }
 </style>

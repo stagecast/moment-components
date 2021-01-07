@@ -34,10 +34,16 @@ Vue.use(scPrizeOverlay)
 The library allows you to support multiple languages and switch the translation at runtime by relying on a internationalization library like vue-i18n. 
 
 Currently supported Languages: 
-- EN: English (default)
-- IT: Italian
-- DE: German
-- SV: Swedish
+- English (en) (default)
+- Italian (it)
+- German (de)
+- Swedish (sv)
+- Danish (da)
+- Arabic (ar)
+- Spanish (es)
+- Russian (ru)
+- Turkish (tr)
+- Vietnamese (vi)
 
 ### Specify Library Language
 ```
