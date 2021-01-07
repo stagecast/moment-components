@@ -1,3 +1,4 @@
+// lang Swedish (sv)
 export default {
   scComponents: {
     help: {

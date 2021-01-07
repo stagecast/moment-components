@@ -406,7 +406,9 @@ export default {
       line-height: 25px;
       margin: 20px 0;
     }
-
+    .prize-text {
+      white-space: pre-wrap;
+    }
     .prize-learnmore {
       padding-top: 20px;
       font-weight: bold;
