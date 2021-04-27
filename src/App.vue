@@ -8,6 +8,7 @@
         <sc-prize-popup ref="prize" :options="prizeOptions" :manualTrigger="true" :prize="prize"></sc-prize-popup>
       </div>
     </div>
+    <ScSponsorBanner :sponsor="sponsor"></ScSponsorBanner>
   </div>
 </template>
 
@@ -17,6 +18,15 @@ export default {
   components: { },
   data: function () {
     return {
+      sponsor: {
+        credit: 'Test sponsor:',
+        logos: [
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Targobank_logo.svg/798px-Targobank_logo.svg.png',
+          'https://assets-global.website-files.com/5a61c6bb84cc4f0001c762eb/6081b9910430dbe2a36d212e_Stagecast%20Logo.svg',
+          'https://assets-global.website-files.com/5a61c6bb84cc4f0001c762eb/6081b9910430dbe2a36d212e_Stagecast%20Logo.svg',
+          'https://assets-global.website-files.com/5a61c6bb84cc4f0001c762eb/6081b9910430dbe2a36d212e_Stagecast%20Logo.svg'
+        ]
+      },
       prize: {
         picture: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666',
         title: 'Headling',
@@ -56,6 +66,9 @@ export default {
 
 <style lang="scss">
   @import 'styles/main.scss';
+  body {
+    background: transparent;
+  }
 
   #app {
     font-size: $base-font-size;
@@ -69,8 +82,7 @@ export default {
     height: 100%;
     width: 100vw;
     min-height: 100vh;
-    background: rgb(61,23,239);
-    background: linear-gradient(130deg, rgba(61,23,239,1), rgba(109,83,255,1));
+    background: transparent;
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;

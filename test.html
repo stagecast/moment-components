@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Preview</title>
+</head>
+<body>
+    <style>
+        #frame {
+            width: 360px;
+            height: 600px;
+            min-height: 600px;
+        }
+    </style>
+    <iframe id="frame" src="http://localhost:8080" frameborder="0"></iframe>
+</body>
+<script>
+    var winnerScreenConfig = {
+        component: 'winner', 
+        componentOptions: {
+            prize: {
+                headline: 'Win an amazing prize!',
+                description: 'Participate in the activity and get a chance to win the prize.',
+                picture: 'https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg',
+                additionalField1: 'Type Name...',
+                additionalField2: 'Type Email...',
+                buttonLabel: 'Claim NOOOOW!',
+                terms: 'test'
+            }
+        }
+    };
+
+    var customSocial = {
+        facebook: 'https://statecast.io',
+        instagram: 'https://statecast.io',
+        twich: 'https://statecast.io',
+        youtube: 'https://statecast.io',
+        spotify: 'https://statecast.io',
+        twitter: 'https://statecast.io',
+        linkedin: 'https://statecast.io'
+    }
+    var customWebsite = {
+        buttonLabel: 'Go to Website',
+        buttonLink: 'https://stagecast.io'
+    }
+    var customFeedback = {
+        buttonLabel: 'Submit Feedback',
+    }
+    var custom = {
+        buttonLabel: 'Submit Custom',
+        userNameInput: 'Your name...',
+        userEmailInput: 'Your email...',
+    }
+
+    var ctaConfig = {
+        component: 'cta', 
+        componentOptions: {
+            cta: {
+                type: 'social',
+                headline: 'This is my Cta headline',
+                description: 'Participate in the activity and get a chance to win the prize.',
+                header: ['https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg'],
+                custom: customSocial
+            }
+        }
+    }
+
+    var votingConfig = {
+        component: 'poll', 
+        componentOptions: {
+            config: {
+                backgroundColor: 'red'
+            }
+        }
+    }
+
+</script>
+<script>
+    let config = ctaConfig;
+    document.addEventListener('click', function () {
+        const frame = document.getElementById('frame')
+        frame.contentWindow
+            .postMessage({ 
+                messageSource: 'STAGECAST_PREVIEW',
+                config: config
+            }, '*')
+    })
+
+    window.addEventListener('message', function (data) {
+        console.log(data);
+    })
+
+</script>
+</html>

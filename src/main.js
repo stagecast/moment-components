@@ -4,9 +4,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import StagecastComponents from './lib'
-import ar from './locale/lang/ar'
+// import ar from './locale/lang/ar'
 // import da from './locale/lang/da'
-// import de from './locale/lang/de'
+import de from './locale/lang/de'
 // import en from './locale/lang/en'
 // import es from './locale/lang/es'
 // import it from './locale/lang/it'
@@ -17,9 +17,9 @@ import ar from './locale/lang/ar'
 
 Vue.config.productionTip = false
 
-StagecastComponents.locale(ar)
+// StagecastComponents.locale(ar)
 // StagecastComponents.locale(da)
-// StagecastComponents.locale(de)
+StagecastComponents.locale(de)
 // StagecastComponents.locale(en)
 // StagecastComponents.locale(es)
 // StagecastComponents.locale(it)

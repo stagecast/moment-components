@@ -94,6 +94,54 @@
   }
 }
 
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 16px;
+
+  .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    border-radius: 7px;
+    border: 2px solid var(--bg-color-4);
+    height: 50px;
+    font-family: $base-font-stack;
+    font-style: normal;
+    font-weight: $font-weight-bold;
+    font-size: 18px;
+    line-height: 30px;
+
+    background: var(--input-color-1);
+    color: var(--input-text-color-1);
+    padding-left: 18px;
+    padding-right: 18px;
+    outline: none;
+    transition: all .15s ease-in;
+
+    &::-webkit-input-placeholder,
+    &:-moz-placeholder,
+    &:-moz-placeholder,
+    &:-ms-input-placeholder {
+      color: rgba(23, 23, 23, 0.2);
+    }
+
+    &:focus {
+      border-color: var(--input-color-2);
+    }
+  }
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+  & + .main-button {
+    margin-top: 32px;
+  }
+}
+
 .main-button {
   text-decoration: none;
   text-align: center;

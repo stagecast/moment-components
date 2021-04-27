@@ -1,8 +1,8 @@
-# Vue.js Moment Components
+# Vue.js Activation Components
 
-## Install 
+## Install inside an Acntivation
 
-Inside your moment project run:
+Inside your activation project run:
 ```
 npm install github:stagecast/moment-components#semver:<latest-version> --save
 ```
@@ -93,6 +93,10 @@ Vue.use(StagecastComponents, {
 })
 ```
 ## Develop
+
+### Test Preview
+1. run `npm run serve:preview`
+2. open `/test.html`
 
 ### Project setup
 ```

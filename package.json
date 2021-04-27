@@ -1,7 +1,7 @@
 {
   "name": "@stagecast/moment-components",
   "version": "0.3.23",
-  "author": "Filippo Boiani",
+  "author": "Filippo Boiani <filippo@stagecast.se>",
   "private": false,
   "main": "./lib/moment-components.common.js",
   "unpkg": "./lib/moment-components.umd.min.js",
@@ -19,8 +19,10 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:preview": "vue-cli-service serve --target app src/preview.js",
     "build": "vue-cli-service build",
     "build:lib": "vue-cli-service build --target lib --name moment-components src/lib.js",
+    "build:preview": "vue-cli-service build --target app --name moment-components  --dest preview src/preview.js",
     "build:wc": "vue-cli-service build --target wc --name moment-components src/wc.js",
     "lint": "vue-cli-service lint"
   },
@@ -42,6 +44,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.14.0",
     "sass-loader": "^8.0.2",
+    "vue-i18n": "^8.24.2",
     "vue-template-compiler": "^2.6.11"
   },
   "keywords": [

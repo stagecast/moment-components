@@ -13,7 +13,7 @@ export default {
       },
       accept: 'Ich akzeptiere die',
       and: 'und die',
-      tos: 'allgemeinen Geschäftsbedingungen',
+      tos: 'allgemeinen Geschäfts-</br>bedingungen',
       prizeterms: 'Gewinnspielbedingungen'
     },
     prize: {
