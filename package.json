@@ -1,6 +1,6 @@
 {
   "name": "@stagecast/moment-components",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "author": "Filippo Boiani <filippo@stagecast.se>",
   "private": false,
   "main": "./lib/moment-components.common.js",
