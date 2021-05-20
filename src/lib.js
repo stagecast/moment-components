@@ -23,5 +23,6 @@ export { default as scHelpPopup } from './components/scHelpPopup'
 export { default as scPrizePopup } from './components/scPrizePopup'
 export { default as scPopupOverlay } from './components/scPopupOverlay'
 export { default as scSponsorBanner } from './components/scSponsorBanner'
+export { default as scCtaPopup } from './components/scCta'
 
 // for more see: https://www.xiegerts.com/post/creating-vue-component-library-plugin/ 
