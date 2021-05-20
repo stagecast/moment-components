@@ -87,7 +87,7 @@ export default {
 
   .popup-content {
     padding: 5px;
-    min-height: 380px;
+    min-height: 280px;
   }
 
   .close-button {
