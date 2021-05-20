@@ -21,7 +21,8 @@ export default {
       type: Object,
       required: true,
       default () { return {} }
-    }
+    },
+    popupRef: Object
   },
   data: function () {
     return {}
@@ -29,7 +30,25 @@ export default {
   computed: {},
   mounted: function () {},
   methods: {
-    handleClick () {}
+    handleClick () {
+      this.trackClick()
+      window.open(this.custom.buttonLink, '_blank', 'noopener,noreferrer')
+      window.setTimeout(() => {
+        if (this.popupRef) {
+          this.popupRef.hide()
+        }
+      }, 100)
+    },
+    trackClick () {
+      if (this.$SDK) {
+        const options = {
+          category: 'engagement',
+          value: 1,
+          label: 'CTA clicked'
+        }
+        this.$SDK.analytics.track('cta_click', options)
+      }
+    }
   }
 }
 </script>

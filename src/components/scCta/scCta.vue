@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="box-footer">
-      <ScCtaWebsite :custom="cta.custom" v-if="ofType(['website'])"></ScCtaWebsite>
+      <ScCtaWebsite :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['website'])"></ScCtaWebsite>
       <ScCtaSocial :custom="cta.custom" v-if="ofType(['social'])"></ScCtaSocial>
       <ScCtaFeedback :custom="cta.custom" v-if="ofType(['feedback'])"></ScCtaFeedback>
       <ScCtaCustom :custom="cta.custom" v-if="ofType(['leadgen', 'newsletter', 'promotion'])"></ScCtaCustom>
@@ -35,7 +35,8 @@ export default {
       type: Object,
       required: true,
       default () { return {} }
-    }
+    },
+    popupRef: Object
   },
   data: function () {
     return {}

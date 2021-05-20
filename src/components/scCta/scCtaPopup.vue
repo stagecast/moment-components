@@ -1,7 +1,7 @@
 <template>
   <span class="cta-box">
     <SCPopupOverlay class="cta-overlay" ref="ctaOverlay" :canDismiss="options.canDismiss">
-      <ScCta :cta="cta"></ScCta>
+      <ScCta :cta="cta" :popupRef="$refs.ctaOverlay"></ScCta>
     </SCPopupOverlay>
   </span>
 </template>
