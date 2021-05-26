@@ -9,6 +9,7 @@
       </div>
     </div>
     <ScSponsorBanner :sponsor="sponsor"></ScSponsorBanner>
+    <ScFooter :theme="theme"></ScFooter>
   </div>
 </template>
 
