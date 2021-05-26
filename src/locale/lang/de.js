@@ -14,7 +14,7 @@ export default {
       accept: 'Ich akzeptiere die',
       and: 'und die',
       tos: 'allgemeinen Geschäfts-</br>bedingungen',
-      prizeterms: 'Gewinnspielbedingungen'
+      prizeterms: 'Gewinnspiel-</br>bedingungen'
     },
     prize: {
       congrats: 'Glückwunsch! Du hast einen Preis gewonnen.',

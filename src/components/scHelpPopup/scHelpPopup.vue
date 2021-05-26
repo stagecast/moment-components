@@ -75,7 +75,7 @@
               <a href="https://www.stagecast.io/terms-and-conditions" target="termsofservice" rel="nofollow noopener noreferrer" v-html="t('scComponents.help.tos')"></a>
               <span v-if="prize && prize.rulesDocUrl">
                 {{ t('scComponents.help.and') }}
-                <a :href="prize.rulesDocUrl" :download="t('scComponents.help.prizeterms')">{{ t('scComponents.help.prizeterms') }}</a>
+                <a :href="prize.rulesDocUrl" :download="t('scComponents.help.prizeterms')" v-html="t('scComponents.help.prizeterms')"></a>
               </span>
             </span>
             <input type="checkbox" value="true" v-model="checkbox">
@@ -411,6 +411,7 @@ export default {
     }
     .prize-learnmore {
       padding-top: 20px;
+      margin-bottom: 30px;
       font-weight: bold;
     }
 
@@ -439,7 +440,7 @@ export default {
       bottom: 0;
       left: 0;
       width: 100%;
-      background: var(--bg-color-1);
+      background: var(--bg-color-2);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       padding: 20px 25px 21px 25px;
     }
