@@ -25,7 +25,7 @@
         <div v-if="share" class="tab-title" :class="{selected: isActiveTab(2)}" @click="showTab(2)">{{ t('scComponents.help.tabs.share') }}</div>
       </div>
       <!-- body -->
-      <div :class="{ 'bottom-padder': !onboarded }">
+      <div>
         <!-- tab: prize -->
         <div class="tab-content" dir="auto" v-if="prize" v-show="isActiveTab(0)">
           <div class="prize-image" v-if="prize.picture">
@@ -338,7 +338,7 @@ export default {
 
   .tab-content {
     // text-align: left;
-    padding-bottom: 40px;
+    padding-bottom: 16px;
 
     ul {
       list-style-image: var(--list-style-image);
@@ -386,10 +386,6 @@ export default {
       }
     }
 
-    .bottom-padder {
-      padding-bottom: 106px;
-    }
-
     .prize-image {
       margin: 20px 0;
     }
@@ -411,7 +407,7 @@ export default {
     }
     .prize-learnmore {
       padding-top: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       font-weight: bold;
     }
 
@@ -436,10 +432,11 @@ export default {
     }
 
     .start-bottom-overlay {
-      position: absolute;
+      position: relative;
       bottom: 0;
       left: 0;
-      width: 100%;
+      width: calc(100% + 48px);
+      margin: 0 -24px -20px -24px;
       background: var(--bg-color-2);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       padding: 20px 25px 21px 25px;
