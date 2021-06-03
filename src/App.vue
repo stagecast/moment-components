@@ -21,6 +21,7 @@ export default {
     return {
       sponsor: {
         credit: 'Test sponsor:',
+        color: 'red',
         logos: [
           'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Targobank_logo.svg/798px-Targobank_logo.svg.png',
           'https://assets-global.website-files.com/5a61c6bb84cc4f0001c762eb/6081b9910430dbe2a36d212e_Stagecast%20Logo.svg',
