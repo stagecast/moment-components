@@ -1,5 +1,5 @@
 <template>
-  <div class="sponsor-banner" v-if="hasSponsor">
+  <div class="sponsor-banner" v-if="hasSponsor" v-bind:style="background">
     <p v-if="sponsor.credit">{{ sponsor.credit }}</p>
     <div class="logo-container">
       <div class="logo-positioner" v-for="(logo, index) in sponsor.logos" v-bind:key="index">
@@ -18,6 +18,11 @@ export default {
   computed: {
     hasSponsor () {
       return (this.sponsor && this.sponsor.logos && this.sponsor.logos.length)
+    },
+    background () {
+      return this.sponsor && this.sponsor.color 
+        ? { backgroundColor: this.sponsor.color } 
+        : null
     }
   },
   props: {
