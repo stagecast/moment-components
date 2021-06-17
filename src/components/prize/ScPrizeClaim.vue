@@ -191,13 +191,14 @@ export default {
      */
     submitData (instanceId) {
       const userData = {
-        name: this.formValue.user,
+        name: this.formValue.name,
         email: this.formValue.email,
         username: this.profile.name,
         points: this.profile.bestScore,
         position: this.profile.position
       }
-      this.$SDK.prize.fulfillClaim(instanceId, userData)
+      this.$SDK.prize.claimPrize(instanceId)
+        .then(() => this.$SDK.prize.fulfillClaim(instanceId, userData))
         .then(() => {
           this.submitted = true
         })
