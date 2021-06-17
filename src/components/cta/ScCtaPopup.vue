@@ -1,5 +1,5 @@
 <template>
-  <span class="cta-box">
+  <span class="cta-popup-container">
     <SCPopupOverlay class="cta-overlay" ref="ctaOverlay" :canDismiss="options.canDismiss">
       <ScCta :cta="cta" :popupRef="$refs.ctaOverlay"></ScCta>
     </SCPopupOverlay>
@@ -51,7 +51,7 @@ export default {
   .popup-content {
     min-height: 280px!important;
   }
-  .cta-box {
+  .cta-popup-container {
     display: inline-block;
     margin: -51px -25px -25px -25px;
 

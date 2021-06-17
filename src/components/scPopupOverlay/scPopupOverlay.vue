@@ -76,17 +76,15 @@ export default {
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    padding: 16px 20px;
   }
 
   .popup-header {
     text-align: right;
     margin: 0 -8px;
-    height: 30px;
+    // height: 30px;
   }
 
   .popup-content {
-    padding: 5px;
     min-height: 280px;
   }
 

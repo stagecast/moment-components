@@ -22,10 +22,10 @@
 
 <script>
 import '../../styles/main.scss'
-import ScCtaWebsite from './footer/scCtaWebsite'
-import ScCtaSocial from './footer/scCtaSocial'
+import ScCtaCustom from './footer/ScCtaCustom'
 import ScCtaFeedback from './footer/ScCtaFeedback'
-import ScCtaCustom from './footer/scCtaCustom'
+import ScCtaSocial from './footer/ScCtaSocial'
+import ScCtaWebsite from './footer/ScCtaWebsite'
 
 export default {
   name: 'ScCta',

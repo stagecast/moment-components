@@ -2,10 +2,11 @@
   <div id="app">
     <div style="margin:10px">
       <div style="display: inline-block; margin-right:10px;">
-        <sc-help-popup ref="popup" :prize="prize" :howto="howto" :options="{ title }" :share="share"></sc-help-popup>
+        <ScOnboardingPopup ref="popup" :prize="prize" :howto="howto" :options="{ title }" :share="share"></ScOnboardingPopup>
       </div>
       <div style="display: inline-block;">
-        <sc-prize-popup ref="prize" :options="prizeOptions" :manualTrigger="true" :prize="prize"></sc-prize-popup>
+        <ScPrizeClaimPopup ref="prize" :options="prizeOptions" :manualTrigger="true" :profile="{}" :prize="prize"></ScPrizeClaimPopup>
+        <ScCtaPopup ref="cta" :cta="cta" :manualTrigger="true"></ScCtaPopup>
       </div>
     </div>
     <ScSponsorBanner :sponsor="sponsor"></ScSponsorBanner>
@@ -19,6 +20,21 @@ export default {
   components: { },
   data: function () {
     return {
+      cta: {
+        type: 'social',
+        headline: 'This is my Cta headline',
+        description: 'Participate in the activity and get a chance to win the prize.',
+        header: ['https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg'],
+        custom: {
+          facebook: 'https://statecast.io',
+          instagram: 'https://statecast.io',
+          twich: 'https://statecast.io',
+          youtube: 'https://statecast.io',
+          spotify: 'https://statecast.io',
+          twitter: 'https://statecast.io',
+          linkedin: 'https://statecast.io'
+        }
+      },
       sponsor: {
         credit: 'Test sponsor:',
         color: 'red',
@@ -30,13 +46,27 @@ export default {
         ]
       },
       prize: {
-        picture: 'https://staging.stagecast.se/api/content/F827F4D2-A805-4C31-8284-3079B0E51666',
-        title: 'Headling',
-        description: 'This is my description text. With some other text that follows.\n\nBla bla bla. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        claimButtonLink: 'https://amazon.it',
-        rulesDocUrl: 'https://d2cb7i0wbc0znj.cloudfront.net/api/content/6ADC2578-8BAA-4201-AF6E-620D43387F8B',
-        learnMoreTitle: '!!! Learn More Here !!!',
-        learnMoreUrl: 'https://www.stagecast.io/guides-tutorials'
+        headline: 'Win an amazing prize!',
+        description: 'Participate in the activity and get a chance to win the prize',
+        picture: 'https://console.staging.stagecast.io/media/assets/prize/prize-header.jpg',
+        learnMoreUrl: 'https://stagecast.io/pricing',
+        learnMoreTitle: 'Go visit Stagecast pricing',
+        fulfillment: {
+          // type: 'website-visits',
+          type: 'collect-data',
+          picture: 'https://console.staging.stagecast.io/media/assets/prize/prize-header-winner.jpg',
+          headline: 'Congratulations you have won a prize!',
+          description: 'You are one of the lucky winners. Make sure to claim your well deserved prize below.',
+          config: {
+            claimLabel: 'Claim Prize NOOOOW',
+            claimUrl: 'https://stagecast.io',
+            termsUrl: 'https://stagecast.io',
+            termsLinkTitle: 'Terms Link Title',
+            termsLabel: 'Terms label',
+            nameInput: 'This is my name input',
+            emailInput: 'This is my email input',
+          }
+        }
       },
       prizeOptions: {
         claimError: 'The prize was already claimed.',
@@ -62,6 +92,7 @@ export default {
   },
   mounted: function () {
     this.$refs.prize.show()
+    this.$refs.cta.show()
   }
 }
 </script>

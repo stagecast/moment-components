@@ -19,11 +19,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default { locale: locale.use, i18n: locale.i18n, install }
-export { default as scHelpPopup } from './components/scHelpPopup'
 export { default as scPrizePopup } from './components/scPrizePopup'
 export { default as scPopupOverlay } from './components/scPopupOverlay'
-export { default as scSponsorBanner } from './components/scSponsorBanner'
-export { default as scCtaPopup } from './components/scCta'
-export { default as scFooter } from './components/scFooter'
+// new components
+export { default as ScOnboardingPopup } from './components/onboarding'
+export { default as ScSponsorBanner } from './components/banner'
+export { default as ScCtaPopup } from './components/cta'
+export { default as ScPrizeClaimPopup } from './components/prize'
+export { default as ScFooter } from './components/footer'
 
 // for more see: https://www.xiegerts.com/post/creating-vue-component-library-plugin/ 

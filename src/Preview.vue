@@ -1,21 +1,21 @@
 <template>
   <div id="app" style="margin-top:8px">
-    <ScHelpComponent v-if="component === 'onboarding'" :prize="componentOptions.prize" :howto="componentOptions.howto" :options="{}" :share="componentOptions.share"></ScHelpComponent>
-    <ScWinnerComponent v-if="component === 'winner'" :prize="componentOptions.prize"></ScWinnerComponent>
+    <ScOnboarding v-if="component === 'onboarding'" :prize="componentOptions.prize" :howto="componentOptions.howto" :options="{ title: 'Activation Title' }" :share="componentOptions.share"></ScOnboarding>
+    <ScPrizeClaim v-if="component === 'winner'" :prize="componentOptions.prize" :profile="{}" :previewMode="true"></ScPrizeClaim>
     <ScCta v-if="component === 'cta'" :cta="componentOptions.cta"></ScCta>
   </div>
 </template>
 
 <script>
-import ScHelpComponent from './previews/HelpComponent';
-import ScWinnerComponent from './previews/WinnerComponent';
 
 // real components
-import ScCta from './components/scCta/scCta';
+import ScCta from './components/cta/ScCta';
+import ScOnboarding from './components/onboarding/ScOnboarding';
+import ScPrizeClaim from './components/prize/ScPrizeClaim';
 
 export default {
   name: 'App',
-  components: { ScHelpComponent, ScWinnerComponent, ScCta },
+  components: { ScOnboarding, ScPrizeClaim, ScCta },
   data: function () {
     return {
       component: 'onboarding',
@@ -38,10 +38,11 @@ export default {
       this.$nextTick(() => {
         var body = document.body,
             html = document.documentElement;
+
         window.parent.postMessage({
           messageSource: 'STAGECAST_PREVIEW',
           config: {
-            height: Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight )
+            height: Math.max(body.scrollHeight, body.offsetHeight, html.offsetHeight)
           }
         }, '*')
       })

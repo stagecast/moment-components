@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Preview</title>
+</head>
+<body>
+    <style>
+        #frame {
+            width: 360px;
+            height: 600px;
+            min-height: 600px;
+        }
+    </style>
+    <iframe id="frame" src="http://localhost:8080" frameborder="0"></iframe>
+</body>
+<script>
+    
+
+    var prizeConfig1 = {
+        component: 'winner', 
+        componentOptions: {
+            prize: {
+                headline: 'Win an amazing prize!',
+                description: 'Participate in the activity and get a chance to win the prize',
+                picture: 'https://console.staging.stagecast.io/media/assets/prize/prize-header.jpg',
+                fulfillment: {
+                    // type: 'website-visits',
+                    type: 'collect-data',
+                    picture: 'https://console.staging.stagecast.io/media/assets/prize/prize-header-winner.jpg',
+                    headline: 'Congratulations you have won a prize!',
+                    description: 'You are one of the lucky winners. Make sure to claim your well deserved prize below.',
+                    config: {
+                        claimLabel: 'Claim Prize NOOOOW',
+                        claimUrl: 'https://stagecast.io',
+                        // termsUrl: 'https://stagecast.io',
+                        termsLinkTitle: 'Terms Link Title',
+                        termsLabel: 'Terms label',
+                        nameInput: 'This is my name input',
+                        emailInput: 'This is my email input',
+                        submitMessage: 'Test the submit message'
+                    }
+                }
+            }
+        }
+    }
+
+    var prizeConfig2 = {
+        component: 'winner', 
+        componentOptions: {
+            prize: {
+                headline: 'Win an amazing prize!',
+                description: 'Participate in the activity and get a chance to win the prize',
+                picture: 'https://console.staging.stagecast.io/media/assets/prize/prize-header.jpg',
+                fulfillment: {
+                    // type: 'website-visits',
+                    type: 'collect-data',
+                    picture: 'https://console.staging.stagecast.io/media/assets/prize/prize-header-winner.jpg',
+                    headline: 'Congratulations you have won a prize!',
+                    description: 'You are one of the lucky winners. Make sure to claim your well deserved prize below.',
+                    config: {
+                        claimLabel: 'Claim Prize NOOOOW',
+                        claimUrl: 'https://stagecast.io',
+                        termsUrl: 'https://stagecast.io',
+                        termsLinkTitle: 'Terms Link Title',
+                        termsLabel: 'Terms label',
+                        nameInput: 'This is my name input',
+                        emailInput: 'This is my email input',
+                        submitMessage: 'Test the submit message'
+                    }
+                }
+            }
+        }
+    }
+
+
+
+</script>
+<script>
+    let config = prizeConfig1;
+    document.addEventListener('click', function () {
+        const frame = document.getElementById('frame')
+        frame.contentWindow
+            .postMessage({ 
+                messageSource: 'STAGECAST_PREVIEW',
+                config: config
+            }, '*')
+    })
+
+    window.addEventListener('message', function (data) {
+        console.log(data);
+    })
+
+    window.setTimeout(() => {
+        const frame = document.getElementById('frame')
+        frame.contentWindow
+            .postMessage({ 
+                messageSource: 'STAGECAST_PREVIEW',
+                config: prizeConfig2
+            }, '*')
+    }, 4000)
+
+</script>
+</html>
