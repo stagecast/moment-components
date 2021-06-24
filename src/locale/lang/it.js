@@ -17,7 +17,9 @@ export default {
     },
     prize: {
       congrats: 'Congratulazioni! Hai vinto un premio.',
-      claim: 'Vai al Premio'
+      claim: 'Vai al Premio',
+      claimError: 'Hai già riscattato questo premio.',
+      claimErrorGeneric: 'Non è stato possibile riscattare il premio. Riprova piú tardi.'
     }
   }
 }

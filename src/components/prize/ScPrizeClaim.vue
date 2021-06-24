@@ -15,10 +15,10 @@
         </div>
 
         <div class="input-group" v-if="ofType('collect-data') && getNameInput">
-          <input type="text" class="form-control" v-model="formValue.name" :placeholder="getNameInput">
+          <input type="text" class="form-control" :disabled="isInputDisabled" :class="{ disabled: isInputDisabled }" v-model="form.value.name" :placeholder="getNameInput">
         </div>
         <div class="input-group" v-if="ofType('collect-data') && getEmailInput">
-          <input type="email" class="form-control" v-model="formValue.email" :placeholder="getEmailInput">
+          <input type="email" class="form-control" :disabled="isInputDisabled" :class="{ disabled: isInputDisabled}" v-model="form.value.email" :placeholder="getEmailInput">
         </div>
 
       </div>
@@ -30,7 +30,7 @@
                 <a :href="getTermsUrl" :download="t('scComponents.help.tos')">{{ prize.fulfillment.config.termsLinkTitle || t('scComponents.help.tos') }}</a>
               </span>
             </span>
-            <input type="checkbox" value="true" v-model="checkbox">
+            <input type="checkbox" value="true" v-model="form.value.checkbox">
             <span class="mc-checkmark"></span>
           </label>
         </div>
@@ -50,7 +50,7 @@
             <path d="M20.2473 0H14.2851C13.8265 0 13.4552 0.371274 13.4552 0.829906C13.4552 1.28854 13.8265 1.65981 14.2851 1.65981H18.2599L9.85165 10.0681C9.52406 10.3957 9.52406 10.898 9.85165 11.2256C10.0045 11.3785 10.2229 11.4658 10.4413 11.4658C10.6597 11.4658 10.8563 11.3785 11.031 11.2256L19.4393 2.79547V6.77029C19.4393 7.22892 19.8105 7.60019 20.2692 7.60019C20.7278 7.60019 21.0991 7.22892 21.0991 6.77029V0.829906C21.0772 0.371274 20.706 0 20.2473 0Z" fill="var(--btn-text-color-1)"/>
           </svg>
         </button>
-        <div class="submit-message" v-if="submitted || previewMode" >{{ getSubmitMessage }}</div>
+        <div class="submit-message" :class="{'text-red': submitStatus !== 'SUCCESS'}" v-if="submitStatus || previewMode" >{{ getSubmitMessage }}</div>
       </div>
     </div>
   </div>
@@ -93,12 +93,37 @@ export default {
   },
   data: function () {
     return {
-      checkbox: false,
-      submitted: false,
+      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, //eslint-disable-line
+      submitStatus: undefined,
       submitting: false,
-      formValue: {
-        name: '',
-        email: ''
+      activeInstanceId: undefined,
+      lastActiveInstanceId: undefined,
+      form: {
+        status: 'INVALID',
+        value: {
+          name: '',
+          email: '',
+          checkbox: false
+        },
+        valid: {
+          name: false,
+          email: false,
+          checkbox: false
+        },
+        skipProperty (name) {
+          this.valid[name] = true
+        },
+        validators: {
+          name: (val) => { return !!val  },
+          email: (val) => {
+            if (!val) return false
+            return this.emailRegex.test(val)
+          },
+          checkbox: (val) => {
+            if (!this.getTermsUrl) return true
+            return val
+          }
+        }
       }
     }
   },
@@ -122,27 +147,83 @@ export default {
       return this.prize.fulfillment.config.emailInput
     },
     getSubmitMessage () {
-      return this.prize.fulfillment.config.submitMessage 
+      return this.submitStatus === 'SUCCESS' 
+        ? this.prize.fulfillment.config.submitMessage 
+        : this.submitErrorMessage
     },
     canSubmit () {
-      return !this.submitting && !this.submitted && this.checkbox
+      return !this.submitting && !this.submitStatus && this.form.status === 'VALID'
+    },
+    isInputDisabled () {
+      return this.submitting
     }
   },
   mounted: function () {
+    this.checkProfile(this.profile)
     this.checkPrize(this.prize)
   },
   methods: {
+    /**
+     * Open the terms by changing the location.
+     */
     openPrizeTerms () {
       const windowReference = window.open('', '_blank')
       windowReference.location = this.prize.fulfillment.config.termsUrl
     },
 
+    /**
+     * Resets the form and the submit data.
+     */
+    resetState () {
+      this.submitStatus = undefined
+      this.submitting = false
+      this.form.status = 'INVALID'
+      this.form.value = {
+        name: '',
+        email: '',
+        checkbox: false
+      }
+      this.form.valid = {
+        name: false,
+        email: false,
+        checkbox: false
+      }
+    },
+
+    /**
+     * Check if the prize fulfillment data is set. Disabled te checkbox if no termsUrl 
+     * is defined.
+     */
     checkPrize (prize) {
       if (prize && !prize.fulfillment) {
         prize.fulfillment = { config: {} }
       }
       // autocheck if terms are not specified
-      this.checkbox = (prize && !prize.fulfillment.config.termsUrl)
+      if (prize && !prize.fulfillment.config.termsUrl) {
+        this.form.skipProperty('checkbox')
+        this.form.value.checkbox = true
+      }
+      if (prize && !prize.fulfillment.config.nameInput) {
+        this.form.skipProperty('name')
+      }
+      if (prize && !prize.fulfillment.config.emailInput) {
+        this.form.skipProperty('email')
+      }
+    },
+
+    /**
+     * Check profile prize instance
+     */
+    checkProfile (profile) {
+      if (profile && profile.prizes) {
+        const prizeListLen = profile.prizes.length
+        if (!prizeListLen) { return }
+        const instanceId  = profile.prizes[prizeListLen - 1]
+        this.activeInstanceId = instanceId
+        if (this.activeInstanceId !== this.lastActiveInstanceId) {
+          this.resetState()
+        }
+      }
     },
 
     /**
@@ -153,22 +234,26 @@ export default {
     },
 
     /**
+     * Validate the form input based on the value.
+     */
+    validateInput (type, value) {
+      this.form.valid[type] = this.form.validators[type](value)
+      this.form.status = Object.values(this.form.valid).filter(v => v === false).length ? 'INVALID' : 'VALID'
+    },
+
+    /**
      * Claim prize entry point.
      */
     claimPrize () {
       // if the SDK is not defined or the submission in in progress, exit
-      if (this.$SDK && this.profile && !this.submitting && !this.submitted) {
+      if (this.$SDK && this.profile && !this.submitting && !this.submitStatus) {
         this.submitting = true
-        const prizeListLen = this.profile.prizes.length
-        if (!prizeListLen) { return }
-        const instanceId = this.profile.prizes[prizeListLen - 1]
-
         switch (this.prize.fulfillment.type) {
           case 'website-visits':
-            this.visitWebsite(instanceId)
+            this.visitWebsite(this.activeInstanceId)
             break
           case 'collect-data':
-            this.submitData(instanceId)
+            this.submitData(this.activeInstanceId)
             break
           default:
             break
@@ -191,23 +276,47 @@ export default {
      */
     submitData (instanceId) {
       const userData = {
-        name: this.formValue.name,
-        email: this.formValue.email,
+        name: this.form.value.name,
+        email: this.form.value.email,
         username: this.profile.name,
         points: this.profile.bestScore,
-        position: this.profile.position
+        position: this.profile.position,
+        series: this.profile.seriesNumber
       }
       this.$SDK.prize.claimPrize(instanceId)
         .then(() => this.$SDK.prize.fulfillClaim(instanceId, userData))
         .then(() => {
-          this.submitted = true
+          this.submitStatus = 'SUCCESS'
+          this.lastActiveInstanceId = instanceId
         })
-        .catch()
+        .catch((error) => {
+          if (error.statusCode === 403 || error.status === 403) {
+            this.lastActiveInstanceId = instanceId
+            this.submitStatus = 'ERROR_ALREADY_CLAIMED'
+            this.submitErrorMessage = this.$t('scComponents.prize.claimError')
+          } else {
+            this.submitStatus = 'ERROR_GENERIC'
+            this.submitErrorMessage = this.$t('scComponents.prize.claimErrorGeneric')
+            this.submitting = false
+          }
+        })
     }
   },
   watch: {
     prize: function (newValue) {
       this.checkPrize(newValue)
+    },
+    profile: function (newValue) {
+      this.checkProfile(newValue)
+    },
+    'form.value.name': function(newValue) {
+      this.validateInput('name', newValue)
+    },
+    'form.value.email': function(newValue) {
+      this.validateInput('email', newValue)
+    },
+    'form.value.checkbox': function(newValue) {
+      this.validateInput('checkbox', newValue)
     }
   }
 }
@@ -227,6 +336,9 @@ export default {
   }
   .bg-green {
     background: $color-green !important;
+  }
+  .text-red {
+    color: $color-red !important;
   }
 
   a, .link {

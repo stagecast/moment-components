@@ -132,6 +132,12 @@
     &:focus {
       border-color: var(--input-color-2);
     }
+
+    &:disabled, &.disbaled {
+      opacity: 0.3;
+      user-select: none;
+      pointer-events: none;
+    }
   }
 
   &:first-of-type {

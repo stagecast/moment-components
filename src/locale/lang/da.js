@@ -18,7 +18,9 @@ export default {
     },
     prize: {
       congrats: 'Tillykke! Du har vundet en præmie.',
-      claim: 'Gør krav på prisen'
+      claim: 'Gør krav på prisen',
+      claimError: 'Du har allerede gjort krav på denne pris.',
+      claimErrorGeneric: 'Prisen kunne ikke kræves. Prøv igen senere.'
     }
   }
 }

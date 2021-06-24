@@ -18,7 +18,9 @@ export default {
     },
     prize: {
       congrats: 'Félicitations! Vous avez gagné un prix.',
-      claim: 'Réclamer un prix'
+      claim: 'Réclamer un prix',
+      claimError: 'Vous avez déjà réclamé ce prix.',
+      claimErrorGeneric: 'Le prix n\'a pas pu être réclamé. Veuillez réessayer.'
     }
   }
 }

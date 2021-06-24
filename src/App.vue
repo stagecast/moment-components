@@ -65,6 +65,7 @@ export default {
             termsLabel: 'Terms label',
             nameInput: 'This is my name input',
             emailInput: 'This is my email input',
+            submitMessage: 'Test submit message'
           }
         }
       },
