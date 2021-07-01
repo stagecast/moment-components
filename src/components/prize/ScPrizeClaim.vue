@@ -152,6 +152,9 @@ export default {
         : this.submitErrorMessage
     },
     canSubmit () {
+      if (this.prize.fulfillment.type === 'website-visits')  {
+        return true
+      }
       return !this.submitting && !this.submitStatus && this.form.status === 'VALID'
     },
     isInputDisabled () {
