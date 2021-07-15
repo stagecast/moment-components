@@ -18,7 +18,9 @@ export default {
     },
     prize: {
       congrats: 'Grattis! Du har vunnit!',
-      claim: 'Hämta din Vinst'
+      claim: 'Hämta din Vinst',
+      claimError: 'Du har redan hämtat ut detta pris.',
+      claimErrorGeneric: 'Priset kunde inte hämtas ut. Försök igen senare.'
     }
   }
 }

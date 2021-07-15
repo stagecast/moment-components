@@ -18,7 +18,9 @@ export default {
     },
     prize: {
       congrats: 'Congratulations! You have won a prize.',
-      claim: 'Claim Prize'
+      claim: 'Claim Prize',
+      claimError: 'You have already claimed this prize.',
+      claimErrorGeneric: 'The prize could not be claimed. Please try again later.'
     }
   }
 }

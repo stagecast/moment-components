@@ -1,6 +1,6 @@
 <template>
   <div class="sponsor-banner" v-if="hasSponsor" v-bind:style="background">
-    <p v-if="sponsor.credit">{{ sponsor.credit }}</p>
+    <p v-if="sponsor.credit" v-bind:style="textColor">{{ sponsor.credit }}</p>
     <div class="logo-container">
       <div class="logo-positioner" v-for="(logo, index) in sponsor.logos" v-bind:key="index">
         <img :src="logo" :alt="index" />
@@ -16,6 +16,11 @@ export default {
     return {}
   },
   computed: {
+    textColor () {
+      return this.sponsor && this.sponsor.textColor
+        ? { color: this.sponsor.textColor }
+        : { color: '#FFFFFF' }
+    },
     hasSponsor () {
       return (this.sponsor && this.sponsor.logos && this.sponsor.logos.length)
     },
@@ -32,7 +37,9 @@ export default {
       default () {
         return {
           credit: '',
-          logos: []
+          logos: [],
+          color: [],
+          textColor: '#FFFFFF'
         }
       }
     }

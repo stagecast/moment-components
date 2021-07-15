@@ -43,7 +43,9 @@ export default {
   },
   computed: {
     getHeader () {
-      return (Array.isArray(this.cta.header) && !!this.cta.header.length) ? this.cta.header[0] : null
+      return this.cta.header && !!this.cta.header.length 
+        ? this.cta.header.toString()
+        : null 
     }
   },
   mounted: function () {},

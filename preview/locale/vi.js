@@ -19,7 +19,9 @@ export default {
     },
     prize: {
       congrats: 'Chúc mừng! Bạn đã thắng giải.',
-      claim: 'Nhận Giải'
+      claim: 'Nhận Giải',
+      claimError: 'You have already claimed this prize.',
+      claimErrorGeneric: 'The prize could not be claimed. Please try again later.'
     }
   }
 }
