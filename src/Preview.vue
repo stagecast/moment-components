@@ -1,6 +1,6 @@
 <template>
   <div id="app" style="margin-top:8px">
-    <ScOnboarding v-if="component === 'onboarding'" :prize="componentOptions.prize" :howto="componentOptions.howto" :options="{ title: 'Activation Title' }" :share="componentOptions.share"></ScOnboarding>
+    <ScOnboarding v-if="component === 'onboarding'" :prize="componentOptions.prize" :howto="componentOptions.howto" :options="componentOptions.options" :share="componentOptions.share"></ScOnboarding>
     <ScPrizeClaim v-if="component === 'winner'" :prize="componentOptions.prize" :profile="{}" :previewMode="true"></ScPrizeClaim>
     <ScCta v-if="component === 'cta'" :cta="componentOptions.cta"></ScCta>
   </div>

@@ -202,6 +202,10 @@ export default {
         prize.fulfillment = { config: {} }
       }
       // autocheck if terms are not specified
+      this.skipProperties(prize)
+    },
+
+    skipProperties (prize) {
       if (prize && !prize.fulfillment.config.termsUrl) {
         this.form.skipProperty('checkbox')
         this.form.value.checkbox = true
@@ -223,6 +227,7 @@ export default {
         if (!prizeListLen) { return }
         const instanceId  = profile.prizes[prizeListLen - 1]
         this.activeInstanceId = instanceId
+        // reset state if there is a new prize to be claimed
         if (this.activeInstanceId !== this.lastActiveInstanceId) {
           this.resetState()
         }
@@ -250,12 +255,12 @@ export default {
     claimPrize () {
       // if the SDK is not defined or the submission in in progress, exit
       if (this.$SDK && this.profile && !this.submitting && !this.submitStatus) {
-        this.submitting = true
         switch (this.prize.fulfillment.type) {
           case 'website-visits':
             this.visitWebsite(this.activeInstanceId)
             break
           case 'collect-data':
+            this.submitting = true
             this.submitData(this.activeInstanceId)
             break
           default:
@@ -311,6 +316,7 @@ export default {
     },
     profile: function (newValue) {
       this.checkProfile(newValue)
+      this.checkPrize(this.prize)
     },
     'form.value.name': function(newValue) {
       this.validateInput('name', newValue)

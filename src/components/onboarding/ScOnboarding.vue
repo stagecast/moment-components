@@ -71,7 +71,7 @@
         <label class="mc-checkbox">
           <span style="word-break: break-all;">{{ t('scComponents.help.accept') }}
             <a href="https://www.stagecast.io/terms-and-conditions" target="termsofservice" rel="nofollow noopener noreferrer" v-html="t('scComponents.help.tos')"></a>
-            <span v-if="prize && prize.rulesDocUrl">
+            <span v-if="prize && (prize.rulesDocUrl || prize.rulesUrl)">
               {{ t('scComponents.help.and') }}
               <a :href="prize.rulesDocUrl || prize.rulesUrl" :download="t('scComponents.help.prizeterms')" v-html="t('scComponents.help.prizeterms')"></a>
             </span>
