@@ -1,29 +1,29 @@
 {
-  "name": "@stagecast/moment-components",
+  "name": "@stagecast/activation-components",
   "version": "3.0.0-pre.5",
   "author": "Filippo Boiani <filippo@stagecast.se>",
   "private": false,
-  "main": "./lib/moment-components.common.js",
-  "unpkg": "./lib/moment-components.umd.min.js",
-  "jsdelivr": "./lib/moment-components.umd.min.js",
+  "main": "./lib/activation-components.common.js",
+  "unpkg": "./lib/activation-components.umd.min.js",
+  "jsdelivr": "./lib/activation-components.umd.min.js",
   "files": [
     "lib/*",
     "src/*"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/stagecast/moment-components.git"
+    "url": "https://github.com/stagecast/activation-components.git"
   },
   "bugs": {
-    "url": "https://github.com/stagecast/moment-components/issues"
+    "url": "https://github.com/stagecast/activation-components/issues"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve:preview": "vue-cli-service serve --target app src/preview.js",
     "build": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name moment-components src/lib.js",
-    "build:preview": "vue-cli-service build --target app --name moment-components  --dest preview src/preview.js",
-    "build:wc": "vue-cli-service build --target wc --name moment-components src/wc.js",
+    "build:lib": "vue-cli-service build --target lib --name activation-components src/lib.js",
+    "build:preview": "vue-cli-service build --target app --name activation-components  --dest preview src/preview.js",
+    "build:wc": "vue-cli-service build --target wc --name activation-components src/wc.js",
     "lint": "vue-cli-service lint"
   },
   "peerDependencies": {

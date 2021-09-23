@@ -3,6 +3,7 @@
     <div style="margin:10px">
       <div style="display: inline-block; margin-right:10px;">
         <ScOnboardingPopup ref="popup" :prize="prize" :howto="howto" :options="{ title }" :share="share"></ScOnboardingPopup>
+        <ScProfileButton></ScProfileButton>
       </div>
       <div style="display: inline-block;">
         <ScPrizeClaimPopup ref="prize" :options="prizeOptions" :manualTrigger="true" :profile="{}" :prize="prize"></ScPrizeClaimPopup>

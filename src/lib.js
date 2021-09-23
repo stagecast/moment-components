@@ -26,6 +26,7 @@ export { default as ScOnboardingPopup } from './components/onboarding'
 export { default as ScSponsorBanner } from './components/banner'
 export { default as ScCtaPopup } from './components/cta'
 export { default as ScPrizeClaimPopup } from './components/prize'
+export { default as ScProfileButton } from './components/profilebutton'
 export { default as ScFooter } from './components/footer'
 
 // for more see: https://www.xiegerts.com/post/creating-vue-component-library-plugin/ 
