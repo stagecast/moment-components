@@ -45,8 +45,8 @@ export default {
     line-height: 24px;
     color: var(--text-color-2);
     outline: none;
-    height: 36px;
-    width: 36px;
+    height: 38px;
+    width: 38px;
     &:active {
       color: #fff !important;
       transform: scale(0.9);
