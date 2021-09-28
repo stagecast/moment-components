@@ -32,7 +32,7 @@ export default {
   methods: {
     handleClick () {
       this.trackClick()
-      window.open(this.custom.buttonLink, '_blank', 'noopener,noreferrer')
+      window.open(this.custom.buttonLink, '_blank', 'noopener')
       window.setTimeout(() => {
         if (this.popupRef) {
           this.popupRef.hide()

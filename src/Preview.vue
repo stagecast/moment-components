@@ -29,7 +29,7 @@ export default {
   methods: {
     /* Check if the popup has already been opened once */
     handleConfigMessage (message) {
-      if (message && message.data && message.data.messageSource === 'STAGECAST_PREVIEW') {
+      if (message && message.data && message.data.messageTarget === 'STAGECAST_PREVIEW') {
         const config = message.data.config || {}
         this.component = config.component
         this.componentOptions = config.componentOptions

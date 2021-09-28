@@ -276,7 +276,7 @@ export default {
     visitWebsite (instanceId) {
       const claimUrl = this.$SDK.prize.getClaimUrl(instanceId)
       // open the window now and change the location later to make it work on mobile and Safari
-      window.open(claimUrl, '_blank', 'noopener,noreferrer')
+      window.open(claimUrl, '_blank', 'noopener')
     },
 
     /**

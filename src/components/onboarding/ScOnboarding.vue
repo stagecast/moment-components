@@ -36,7 +36,7 @@
           {{ prize.description }}
         </div>
         <div class="prize-learnmore" v-if="prize.learnMoreTitle && prize.learnMoreUrl">
-          <a :href="prize.learnMoreUrl" target="learnmore" rel="nofollow noopener noreferrer">{{ prize.learnMoreTitle }}</a>
+          <a :href="prize.learnMoreUrl" target="learnmore" rel="noopener">{{ prize.learnMoreTitle }}</a>
         </div>
       </div>
       <!-- tab: howto -->
@@ -70,7 +70,7 @@
       <div>
         <label class="mc-checkbox">
           <span style="word-break: break-all;">{{ t('scComponents.help.accept') }}
-            <a href="https://www.stagecast.io/terms-and-conditions" target="termsofservice" rel="nofollow noopener noreferrer" v-html="t('scComponents.help.tos')"></a>
+            <a href="https://www.stagecast.io/terms-and-conditions" target="termsofservice" rel="noopener" v-html="t('scComponents.help.tos')"></a>
             <span v-if="prize && (prize.rulesDocUrl || prize.rulesUrl)">
               {{ t('scComponents.help.and') }}
               <a :href="prize.rulesDocUrl || prize.rulesUrl" :download="t('scComponents.help.prizeterms')" v-html="t('scComponents.help.prizeterms')"></a>
