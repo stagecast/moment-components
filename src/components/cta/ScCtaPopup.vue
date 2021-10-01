@@ -36,6 +36,8 @@ export default {
   mounted: function () {},
   methods: {
     show () {
+      if (this.cta.showOnce && window.sessionStorage.getItem('sc:activation:cta' + this.cta.createdTimestamp) === 'true') { return }
+      window.sessionStorage.setItem('sc:activation:cta' + this.cta.createdTimestamp, true)
       this.$refs.ctaOverlay.show()
     },
     hide () {
