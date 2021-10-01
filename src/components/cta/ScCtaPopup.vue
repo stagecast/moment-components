@@ -31,16 +31,24 @@ export default {
     }
   },
   data: function () {
-    return {}
+    return {
+      ctaTimeout: undefined
+    }
   },
   mounted: function () {},
   methods: {
-    show () {
+    show (options = { delay: 0 }) {
       if (this.cta.showOnce && window.sessionStorage.getItem('sc:activation:cta' + this.cta.createdTimestamp) === 'true') { return }
       window.sessionStorage.setItem('sc:activation:cta' + this.cta.createdTimestamp, true)
-      this.$refs.ctaOverlay.show()
+      if (!options.delay) { options.delay = 0 }
+
+      window.clearTimeout(this.ctaTimeout)
+      this.ctaTimeout = window.setTimeout(() => {
+        this.$refs.ctaOverlay.show()
+      }, options.delay)
     },
     hide () {
+      window.clearTimeout(this.ctaTimeout)
       this.$refs.ctaOverlay.hide()
     }
   }
