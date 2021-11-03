@@ -13,9 +13,9 @@
     </div>
     <div class="box-footer">
       <ScCtaWebsite :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['website'])"></ScCtaWebsite>
-      <ScCtaSocial :custom="cta.custom" v-if="ofType(['social'])"></ScCtaSocial>
-      <ScCtaFeedback :custom="cta.custom" v-if="ofType(['feedback'])"></ScCtaFeedback>
-      <ScCtaCustom :custom="cta.custom" v-if="ofType(['leadgen', 'newsletter', 'promotion'])"></ScCtaCustom>
+      <ScCtaSocial :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['social'])"></ScCtaSocial>
+      <ScCtaFeedback :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['feedback'])"></ScCtaFeedback>
+      <ScCtaCustom :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['leadgen', 'newsletter', 'promotion'])"></ScCtaCustom>
     </div>
   </div>
 </template>

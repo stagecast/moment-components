@@ -29,7 +29,8 @@ export default {
   mounted: function () {},
   methods: {
     handleClick () {}
-  }
+  },
+  watch: {}
 }
 </script>
 

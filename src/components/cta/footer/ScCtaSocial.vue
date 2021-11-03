@@ -24,6 +24,7 @@ export default {
   name: 'ScCtaSocial',
   components: { },
   props: {
+    popupRef: Object,
     custom: {
       type: Object,
       required: true,
@@ -45,12 +46,20 @@ export default {
   methods: {
     handleClick (item) {
       this.$emit('cta:social:redirect', item.link)
+      if (this.$SDK) {
+        window.open(item.link, '_blank', 'noopener')
+        window.setTimeout(() => {
+          if (this.popupRef) {
+            this.popupRef.hide()
+          }
+        }, 100)
+      }
     }
   },
   watch: {
     custom: function (val) {
       this.values = Object.keys(val)
-        .map(social => ({ name: social, link: val[social]}))
+        .map(social => ({ name: social, link: val[social] }))
         .filter(social => !!social.link)
     }
   }
