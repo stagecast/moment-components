@@ -59,6 +59,59 @@
 <script>
 import '../../styles/main.scss'
 
+class FormHanlder {
+
+  constructor (validators) {
+    this.status = 'INVALID'
+    this.dirty = false
+    this.value = {
+      name: '',
+      email: '',
+      checkbox: false
+    }
+    this.valid = {
+      name: false,
+      email: false,
+      checkbox: false
+    }
+    this.validators = validators
+  }
+
+  /**
+   * Reset form state
+   */
+  reset () {
+    this.dirty = false
+    this.status = 'INVALID'
+    this.value = {
+      name: '',
+      email: '',
+      checkbox: false
+    }
+    this.valid = {
+      name: false,
+      email: false,
+      checkbox: false
+    }
+  }
+  /**
+   * Validate the form input based on the value.
+   */
+  validateInput (type, value) {
+    this.dirty = true
+    this.valid[type] = this.validators[type](value)
+    this.status = Object.values(this.valid).filter(v => v === false).length ? 'INVALID' : 'VALID'
+  }
+
+  /**
+   * Mark selected property as valid.
+   */
+  skipProperty (name) {
+    this.valid[name] = true
+  }
+      
+}
+
 export default {
   name: 'ScPrizeClaim',
   components: { },
@@ -97,34 +150,24 @@ export default {
       submitStatus: undefined,
       submitting: false,
       activeInstanceId: undefined,
+      /**
+       * The lastActiveInstanceId is saved in memory until the page is refreshed.
+       * It can be undefined if:
+       * - the user has never won a prize 
+       * - OR if the user has won a prize but refreshed the page.
+       */ 
       lastActiveInstanceId: undefined,
-      form: {
-        status: 'INVALID',
-        value: {
-          name: '',
-          email: '',
-          checkbox: false
+      form: new FormHanlder({
+        name: (val) => { return !!val  },
+        email: (val) => {
+          if (!val) return false
+          return this.emailRegex.test(val)
         },
-        valid: {
-          name: false,
-          email: false,
-          checkbox: false
-        },
-        skipProperty (name) {
-          this.valid[name] = true
-        },
-        validators: {
-          name: (val) => { return !!val  },
-          email: (val) => {
-            if (!val) return false
-            return this.emailRegex.test(val)
-          },
-          checkbox: (val) => {
-            if (!this.getTermsUrl) return true
-            return val
-          }
+        checkbox: (val) => {
+          if (!this.getTermsUrl) return true
+          return val
         }
-      }
+      })
     }
   },
   computed: {
@@ -164,6 +207,7 @@ export default {
   mounted: function () {
     this.checkProfile(this.profile)
     this.checkPrize(this.prize)
+    this.resetState()
   },
   methods: {
     /**
@@ -178,19 +222,9 @@ export default {
      * Resets the form and the submit data.
      */
     resetState () {
+      this.form.reset()
       this.submitStatus = undefined
       this.submitting = false
-      this.form.status = 'INVALID'
-      this.form.value = {
-        name: '',
-        email: '',
-        checkbox: false
-      }
-      this.form.valid = {
-        name: false,
-        email: false,
-        checkbox: false
-      }
     },
 
     /**
@@ -221,16 +255,28 @@ export default {
     /**
      * Check profile prize instance
      */
-    checkProfile (profile) {
-      if (profile && profile.prizes) {
-        const prizeListLen = profile.prizes.length
-        if (!prizeListLen) { return }
-        const instanceId  = profile.prizes[prizeListLen - 1]
+    checkProfile (incomingProfile) {
+      const instanceId = this.extractInstanceIdFromProfile(incomingProfile)
+      // if the instance is defined or the active prize instance has changed
+      if (instanceId && this.activeInstanceId !== instanceId) {
         this.activeInstanceId = instanceId
-        // reset state if there is a new prize to be claimed
-        if (this.activeInstanceId !== this.lastActiveInstanceId) {
+        // if the state has been submitted, reset it if there is a new prize to be claimed
+        if (this.activeInstanceId !== this.lastActiveInstanceId && this.submitStatus) {
           this.resetState()
         }
+      }
+    },
+
+    /**
+     * Get the last instance id from the profile prizes
+     */
+    extractInstanceIdFromProfile (profile) {
+      if (profile && profile.prizes) {
+        const prizeListLen = profile.prizes.length
+        if (!prizeListLen) { return null }
+        return profile.prizes[prizeListLen - 1]
+      } else {
+        return null
       }
     },
 
@@ -239,14 +285,6 @@ export default {
      */
     ofType (type) {
       return this.prize.fulfillment.type === type
-    },
-
-    /**
-     * Validate the form input based on the value.
-     */
-    validateInput (type, value) {
-      this.form.valid[type] = this.form.validators[type](value)
-      this.form.status = Object.values(this.form.valid).filter(v => v === false).length ? 'INVALID' : 'VALID'
     },
 
     /**
@@ -283,6 +321,7 @@ export default {
      * Fulfillment-type: collect data. The user fulfills the claim in this page.
      */
     submitData (instanceId) {
+      this.form.dirty = false
       const userData = {
         name: this.form.value.name,
         email: this.form.value.email,
@@ -319,13 +358,13 @@ export default {
       this.checkPrize(this.prize)
     },
     'form.value.name': function(newValue) {
-      this.validateInput('name', newValue)
+      this.form.validateInput('name', newValue)
     },
     'form.value.email': function(newValue) {
-      this.validateInput('email', newValue)
+      this.form.validateInput('email', newValue)
     },
     'form.value.checkbox': function(newValue) {
-      this.validateInput('checkbox', newValue)
+      this.form.validateInput('checkbox', newValue)
     }
   }
 }
