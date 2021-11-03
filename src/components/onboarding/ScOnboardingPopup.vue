@@ -17,35 +17,40 @@
 <script>
 import SCPopupOverlay from '../scPopupOverlay/scPopupOverlay'
 import ScOnboarding from './ScOnboarding'
+import { setCookie, getCookie } from '../../utils'
 import '../../styles/main.scss'
 
 export default {
   name: 'ScOnboardingPopup',
   components: { SCPopupOverlay, ScOnboarding },
   props: {
+    howto: Array,
+    share: String,
+    prize: Object,
     options: {
       data: Object,
       required: false,
       default () { 
         return {
-          title: 'Moment Help',
+          title: 'Activation Help',
           headerImg: null,
+          activationId: undefined,
           tabs: {}
         } 
       }
-    },
-    howto: Array,
-    share: String,
-    prize: Object    
+    }  
   },
   data: function () {
     return {
       showButton: true,
-      onboarded: false,
-      sessionKey: 'sc:help-onboarded',
+      onboarded: false
     }
   },
-  computed: {},
+  computed: {
+    sessionKey: function () {
+      return this.options.activationId ? `sc:help:${this.options.activationId}` : `sc:help`
+    }
+  },
   mounted: function () {
     window.setTimeout(function () {
       if (!this.isOnboarded()) {
@@ -54,20 +59,34 @@ export default {
     }.bind(this), 300)
   },
   methods: {
-    /* Check if the popup has already been opened once */
+    /**
+     * Check if the popup has already been opened once.
+     */ 
     isOnboarded () {
-      return window.sessionStorage.getItem(this.sessionKey) === 'true'
+      return window.sessionStorage.getItem(this.sessionKey) === 'true' 
+        || getCookie(this.sessionKey) === 'onboarded'
     },
+    /**
+     * Close popup and save onboarding status on session storage
+     */
     completeOnboarding () {
-      window.sessionStorage.setItem(this.sessionKey, true)
+      if (this.options.activationId) {
+        setCookie(this.sessionKey, 'onboarded', 7 /* expires in 7 days */)
+      } else {
+        window.sessionStorage.setItem(this.sessionKey, true)
+        window.addEventListener('beforeunload', () => {
+          window.sessionStorage.removeItem(this.sessionKey)
+        })
+      }
       this.hide()
     },
     /* Open the popup overlay */
-    async show () {
+    show () {
       this.showButton = false
       this.onboarded = this.isOnboarded()
       this.$refs.popupOverlay.show()
     },
+
     hide () {
       this.$refs.popupOverlay.hide()
     },
