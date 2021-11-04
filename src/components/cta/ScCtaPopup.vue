@@ -32,15 +32,37 @@ export default {
   },
   data: function () {
     return {
-      ctaTimeout: undefined
+      ctaTimeout: undefined,
+      // flag to prevent the CTA.onlyOnce from appearing everytime (it is used only when the 
+      // createdTimestamp is not set).
+      shown: false
+    }
+  },
+  computed: {
+    /**
+     * `createdTimestamp` is the activation activeChangeTime.
+     * Some activations might have the same activeChangeTime but his is extremely unlikely and
+     * the collision is mitigated by the fact the key is stored in the sessionStorage.
+     */
+    ctaSessionKey: function () {
+      return this.cta.createdTimestamp ? `sc:activation:cta:${this.cta.createdTimestamp}` : null
     }
   },
   mounted: function () {},
   methods: {
     show (options = { delay: 0 }) {
-      if (this.cta.showOnce && window.sessionStorage.getItem('sc:activation:cta' + this.cta.createdTimestamp) === 'true') { return }
-      window.sessionStorage.setItem('sc:activation:cta' + this.cta.createdTimestamp, true)
-      if (!options.delay) { options.delay = 0 }
+      // prevent showing if the cta has already been shown and the CTA is set to be shown once.
+      if (this.cta.showOnce && (window.sessionStorage.getItem(this.ctaSessionKey) === 'true' || this.shown)) { 
+        return 
+      }
+      if (this.ctaSessionKey) {
+        window.sessionStorage.setItem(this.ctaSessionKey, true)
+      } else {
+        this.shown = true
+      }
+      if (!options.delay) { 
+        options.delay = 0 
+      }
 
       window.clearTimeout(this.ctaTimeout)
       this.ctaTimeout = window.setTimeout(() => {

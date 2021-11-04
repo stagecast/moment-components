@@ -34,6 +34,8 @@ export default {
         return {
           title: 'Activation Help',
           headerImg: null,
+          // the activationId can either be the real activationId or the activation activeChangeTime.
+          // It is only needed as a semi-unique id to store the modal state on sessionStorage and cookie.
           activationId: undefined,
           tabs: {}
         } 
@@ -48,7 +50,7 @@ export default {
   },
   computed: {
     sessionKey: function () {
-      return this.options.activationId ? `sc:help:${this.options.activationId}` : `sc:help`
+      return this.options.activationId ? `sc:activation:help:${this.options.activationId}` : `sc:activation:help`
     }
   },
   mounted: function () {
@@ -71,12 +73,9 @@ export default {
      */
     completeOnboarding () {
       if (this.options.activationId) {
-        setCookie(this.sessionKey, 'onboarded', 7 /* expires in 7 days */)
+        setCookie(this.sessionKey, 'onboarded', 5 /* expires in 5 days */)
       } else {
         window.sessionStorage.setItem(this.sessionKey, true)
-        window.addEventListener('beforeunload', () => {
-          window.sessionStorage.removeItem(this.sessionKey)
-        })
       }
       this.hide()
     },

@@ -46,7 +46,7 @@ export default {
   methods: {
     handleClick (item) {
       this.$emit('cta:social:redirect', item.link)
-      if (this.$SDK) {
+      if (!this.$SDK) {
         window.open(item.link, '_blank', 'noopener')
         window.setTimeout(() => {
           if (this.popupRef) {

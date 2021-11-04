@@ -2,7 +2,7 @@
   <div id="app">
     <div style="margin:10px">
       <div style="display: inline-block; margin-right:10px;">
-        <ScOnboardingPopup ref="popup" :prize="prize" :howto="howto" :options="{ title }" :share="share"></ScOnboardingPopup>
+        <ScOnboardingPopup ref="popup" :prize="prize" :howto="howto" :options="onboardingOptions" :share="share"></ScOnboardingPopup>
         <ScProfileButton></ScProfileButton>
       </div>
       <div style="display: inline-block;">
@@ -21,19 +21,28 @@ export default {
   components: { },
   data: function () {
     return {
+      onboardingOptions: {
+        title: 'Test the Onboarding',
+        activationId: 12345
+      },
       cta: {
-        type: 'social',
+        type: 'newsletter',
+        showOnce: false,
+        createdTimestamp: 12345,
         headline: 'This is my Cta headline',
-        description: 'Participate in the activity and get a chance to win the prize.',
+        description: 'Add your data',
         header: ['https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg'],
         custom: {
-          facebook: 'https://statecast.io',
-          instagram: 'https://statecast.io',
-          twich: 'https://statecast.io',
-          youtube: 'https://statecast.io',
-          spotify: 'https://statecast.io',
-          twitter: 'https://statecast.io',
-          linkedin: 'https://statecast.io'
+          userNameInput: 'Type your name...',
+          userEmailInput: 'Type your email...',
+          buttonLabel: 'Submit Feedback'
+          // facebook: 'https://www.facebook.com/wearestagecast',
+          // instagram: 'https://www.instagram.com/wearestagecast/',
+          // twitch: 'https://stagecast.io',
+          // youtube: 'https://vimeo.com/user70336012',
+          // spotify: 'https://stagecast.io',
+          // twitter: 'https://twitter.com/WeAreStagecast',
+          // linkedin: 'https://stagecast.io'
         }
       },
       sponsor: {
@@ -93,8 +102,8 @@ export default {
     }
   },
   mounted: function () {
-    this.$refs.prize.show()
-    this.$refs.cta.show()
+    // this.$refs.prize.show()
+    this.$refs.cta.show({ delay: 1000 })
   }
 }
 </script>

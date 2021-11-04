@@ -1,9 +1,9 @@
 <template>
   <div class="cta-type-feedback">
     <div class="input-group">
-      <textarea rows="4" class="form-control" placeholder="Type in..."></textarea>
+      <textarea rows="4" class="form-control" :disabled="isInputDisabled" :class="{ disabled: isInputDisabled }" v-model="form.value.feedback" placeholder="Type in..."></textarea>
     </div>
-    <button class="main-button" @click="handleClick()">
+    <button class="main-button" :disabled="!canSubmit" @click="submitFeedback()">
       {{ custom.buttonLabel || 'Submit' }}
     </button>
   </div>
@@ -11,6 +11,51 @@
 
 <script>
 import '../../../styles/main.scss'
+
+class FormHanlder {
+
+  constructor (validators) {
+    this.status = 'INVALID'
+    this.dirty = false
+    this.value = {
+      feedback: ''
+    }
+    this.valid = {
+      feedback: false
+    }
+    this.validators = validators
+  }
+
+  /**
+   * Reset form state
+   */
+  reset () {
+    this.dirty = false
+    this.status = 'INVALID'
+    this.value = {
+      feedback: ''
+    }
+    this.valid = {
+      feedback: false
+    }
+  }
+  /**
+   * Validate the form input based on the value.
+   */
+  validateInput (type, value) {
+    this.dirty = true
+    this.valid[type] = this.validators[type](value)
+    this.status = Object.values(this.valid).filter(v => v === false).length ? 'INVALID' : 'VALID'
+  }
+
+  /**
+   * Mark selected property as valid.
+   */
+  skipProperty (name) {
+    this.valid[name] = true
+  }
+      
+}
 
 export default {
   name: 'ScCtaFeedback',
@@ -23,14 +68,67 @@ export default {
     }
   },
   data: function () {
-    return {}
+    return {
+      submitStatus: undefined,
+      submitting: false,
+      submitErrorMessage: undefined,
+      form: new FormHanlder({
+        feedback: (val) => { return !!val && val.length > 3 }
+      })
+    }
   },
-  computed: {},
-  mounted: function () {},
+  computed: {
+    getSubmitMessage () {
+      return this.submitStatus === 'SUCCESS' 
+        ? 'You successfully submitted your feedback.'
+        : this.submitErrorMessage
+    },
+    canSubmit () {
+      return !this.submitting && !this.submitStatus && this.form.status === 'VALID'
+    },
+    isInputDisabled () {
+      return this.submitting
+    }
+  },
+  mounted: function () {
+    this.resetState()
+  },
   methods: {
-    handleClick () {}
+    /**
+     * Resets the form and the submit data.
+     */
+    resetState () {
+      this.form.reset()
+      this.submitStatus = undefined
+      this.submitting = false
+    },
+    submitFeedback () {
+      if (!this.$SDK) { return }
+      this.form.dirty = false
+      const userData = {
+        feedback: this.form.value.feedback
+      }
+      this.$SDK.activation.cta.setData(userData)
+        .then(() => {
+          this.submitStatus = 'SUCCESS'
+        })
+        .catch((error) => {
+          if (error.statusCode === 403 || error.status === 403) {
+            this.submitStatus = 'ERROR_ALREADY_SUBMITTED'
+            this.submitErrorMessage = 'You have already submitted your feedback.' // this.$t('scComponents.prize.claimError')
+          } else {
+            this.submitStatus = 'ERROR_GENERIC'
+            this.submitErrorMessage = 'An error occurred while submitting. Please try again.' //this.$t('scComponents.prize.claimErrorGeneric')
+            this.submitting = false
+          }
+        })
+    }
   },
-  watch: {}
+  watch: {
+    'form.value.feedback': function(newValue) {
+      this.form.validateInput('feedback', newValue)
+    }
+  }
 }
 </script>
 

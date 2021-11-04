@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test IFrame</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #171717;
+        }
+        #frame {
+            width: 376px;
+            height: 600px;
+            min-height: 600px;
+        }
+    </style>
+    <div style="width: 376px;margin:auto">
+        <iframe id="frame" src="http://localhost:8080" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="accelerometer; camera; encrypted-media; geolocation; gyroscope; microphone; midi; payment;" frameborder="0"></iframe>
+    </div>
+</body>
+</html>

@@ -18,7 +18,7 @@ const youtube = `<svg width="24" height="24" viewBox="0 0 30 21" fill="none" xml
 <path d="M29.3727 3.27871C29.0284 1.98823 28.0108 0.972097 26.7205 0.626613C24.3818 0 15 0 15 0C15 0 5.61818 0 3.27955 0.626613C1.9892 0.972097 0.971591 1.98823 0.627273 3.27871C0 5.61919 0 10.5 0 10.5C0 10.5 0 15.3808 0.627273 17.7213C0.971591 19.0118 1.9892 20.0279 3.27955 20.3734C5.61818 21 15 21 15 21C15 21 24.3818 21 26.7205 20.3734C28.0108 20.0279 29.0284 19.0118 29.3727 17.7213C30 15.3808 30 10.5 30 10.5C30 10.5 30 5.61919 29.3727 3.27871ZM11.9318 14.932V6.06798L19.7727 10.5L11.9318 14.932Z" fill="white"/>
 </svg>
 `;
-const twich = `<svg width="24" height="24" viewBox="0 0 28 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+const twitch = `<svg width="24" height="24" viewBox="0 0 28 33" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5.83333 0L0 5.85106V26.9149H7V32.766L12.8333 26.9149H17.5L28 16.383V0H5.83333ZM25.6667 15.2128L21 19.8936H16.3333L12.25 23.9894V19.8936H7V2.34043H25.6667V15.2128Z" fill="white"/>
 <path d="M22.1693 6.43616H19.8359V13.4574H22.1693V6.43616Z" fill="white"/>
 <path d="M15.7513 6.43616H13.418V13.4574H15.7513V6.43616Z" fill="white"/>
@@ -34,5 +34,5 @@ const spotify = `<svg width="24" height="24" viewBox="0 0 29 28" fill="none" xml
 `;
 
 export const socialIcons =  {
-    spotify, twich, twitter, facebook, linkedin, youtube, instagram
+    spotify, twitch, twitter, facebook, linkedin, youtube, instagram
 }
