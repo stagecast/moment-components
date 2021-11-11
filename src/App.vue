@@ -26,13 +26,15 @@ export default {
         activationId: 12345
       },
       cta: {
-        type: 'newsletter',
+        // type: 'website',
+        type: 'feedback',
         showOnce: false,
         createdTimestamp: 12345,
         headline: 'This is my Cta headline',
         description: 'Add your data',
         header: ['https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg'],
         custom: {
+          buttonLink: 'https://stagecast.io',
           userNameInput: 'Type your name...',
           userEmailInput: 'Type your email...',
           buttonLabel: 'Submit Feedback'

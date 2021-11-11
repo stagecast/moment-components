@@ -20,6 +20,9 @@ export default {
       claim: 'Vai al Premio',
       claimError: 'Hai già riscattato questo premio.',
       claimErrorGeneric: 'Non è stato possibile riscattare il premio. Riprova piú tardi.'
+    },
+    cta: {
+      errorGeneric: 'Si è verificato un errore durante l\'invio. Riprova.'
     }
   }
 }

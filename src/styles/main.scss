@@ -167,7 +167,7 @@
   position: relative;
   padding: 0 50px;
 
-  &:not(:disabled):active, &:not(:disabled):focus {
+  &:not(:disabled):active, &:not(:disabled):focus, &:not(:disabled):hover {
     color: var(--btn-text-color-1) !important;
     transform: scale(0.97);
     transition: all .3s ease-out;

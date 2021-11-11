@@ -12,10 +12,10 @@
       </div>
     </div>
     <div class="box-footer">
-      <ScCtaWebsite :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['website'])"></ScCtaWebsite>
-      <ScCtaSocial :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['social'])"></ScCtaSocial>
-      <ScCtaFeedback :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['feedback'])"></ScCtaFeedback>
-      <ScCtaCustom :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['leadgen', 'newsletter', 'promotion'])"></ScCtaCustom>
+      <ScCtaWebsite :custom="cta.custom" :popupRef="popupRef.ctaOverlay" v-if="ofType(['website'])"></ScCtaWebsite>
+      <ScCtaSocial :custom="cta.custom" :popupRef="popupRef.ctaOverlay" v-if="ofType(['social'])"></ScCtaSocial>
+      <ScCtaFeedback :custom="cta.custom" :popupRef="popupRef.ctaOverlay" v-if="ofType(['feedback'])"></ScCtaFeedback>
+      <ScCtaCustom :custom="cta.custom" :popupRef="popupRef.ctaOverlay" v-if="ofType(['leadgen', 'newsletter', 'promotion'])"></ScCtaCustom>
     </div>
   </div>
 </template>
@@ -36,7 +36,11 @@ export default {
       required: true,
       default () { return {} }
     },
-    popupRef: Object
+    popupRef: {
+      type: Object,
+      required: true,
+      default () { return {} }
+    }
   },
   data: function () {
     return {}
@@ -61,7 +65,7 @@ export default {
     ofType(list) {
       return list.includes(this.cta.type)
     }
-  }
+  },
 }
 </script>
 
