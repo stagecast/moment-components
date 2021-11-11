@@ -6,6 +6,7 @@
     <button class="main-button" :disabled="!canSubmit" @click="submitFeedback()">
       {{ custom.buttonLabel || 'Submit' }}
     </button>
+    <div class="submit-message" :class="{'text-red': submitStatus !== 'SUCCESS'}" v-if="submitStatus" >{{ getSubmitMessage }}</div>
   </div>
 </template>
 
@@ -61,6 +62,7 @@ export default {
   name: 'ScCtaFeedback',
   components: { },
   props: {
+    popupRef: Object,
     custom: {
       type: Object,
       required: true,
@@ -111,6 +113,7 @@ export default {
       this.$SDK.activation.cta.setData(userData)
         .then(() => {
           this.submitStatus = 'SUCCESS'
+          this.delayedPopupClose()
         })
         .catch((error) => {
           if (error.statusCode === 403 || error.status === 403) {
@@ -122,6 +125,13 @@ export default {
             this.submitting = false
           }
         })
+    },
+    delayedPopupClose (timeout = 3000) {
+      window.setTimeout(() => {
+        if (this.popupRef) {
+          this.popupRef.hide()
+        }
+      }, timeout)
     }
   },
   watch: {
@@ -144,5 +154,16 @@ export default {
       padding: 8px;
       line-height: 21px;
     }
+  }
+
+  .text-red {
+    color: $color-red !important;
+  }
+
+  .submit-message {
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
+    color: $color-green;
   }
 </style>
