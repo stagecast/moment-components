@@ -19,3 +19,36 @@ export function getCookie (cname) {
   }
   return ''
 }
+
+export function sessionStorageEnabled () {
+  try {
+    window.sessionStorage.length
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
+export function setSessionStorageItem (item, value) {
+  if (sessionStorageEnabled()) {
+    try { 
+      window.sessionStorage.setItem(item, value)
+      return true
+    } catch (error) {
+      return false
+    }
+  }
+}
+
+export function getSessionStorageItem (item) {
+  if (sessionStorageEnabled()) {
+    try { 
+      return window.sessionStorage.getItem(item) 
+    } catch (error) {
+      return undefined
+    }
+  } else {
+    return undefined
+  }
+}
+

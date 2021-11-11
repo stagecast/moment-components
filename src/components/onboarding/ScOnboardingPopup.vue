@@ -17,7 +17,7 @@
 <script>
 import SCPopupOverlay from '../scPopupOverlay/scPopupOverlay'
 import ScOnboarding from './ScOnboarding'
-import { setCookie, getCookie } from '../../utils'
+import { setCookie, getCookie, getSessionStorageItem, setSessionStorageItem } from '../../utils'
 import '../../styles/main.scss'
 
 export default {
@@ -65,7 +65,7 @@ export default {
      * Check if the popup has already been opened once.
      */ 
     isOnboarded () {
-      return window.sessionStorage.getItem(this.sessionKey) === 'true' 
+      return getSessionStorageItem(this.sessionKey) === 'true' 
         || getCookie(this.sessionKey) === 'onboarded'
     },
     /**
@@ -75,7 +75,7 @@ export default {
       if (this.options.activationId) {
         setCookie(this.sessionKey, 'onboarded', 5 /* expires in 5 days */)
       } else {
-        window.sessionStorage.setItem(this.sessionKey, true)
+        setSessionStorageItem(this.sessionKey, true)
       }
       this.hide()
     },

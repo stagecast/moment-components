@@ -9,6 +9,7 @@
 <script>
 import SCPopupOverlay from '../scPopupOverlay/scPopupOverlay'
 import '../../styles/main.scss'
+import { getSessionStorageItem, setSessionStorageItem } from '../../utils'
 
 export default {
   name: 'ScCtaPopup',
@@ -52,14 +53,13 @@ export default {
   methods: {
     show (options = { delay: 0 }) {
       // prevent showing if the cta has already been shown and the CTA is set to be shown once.
-      if (this.cta.showOnce && (window.sessionStorage.getItem(this.ctaSessionKey) === 'true' || this.shown)) { 
+      if (this.cta.showOnce && this.alreadyShown()) { 
         return 
       }
       if (this.ctaSessionKey) {
-        window.sessionStorage.setItem(this.ctaSessionKey, true)
-      } else {
-        this.shown = true
+        setSessionStorageItem(this.ctaSessionKey, true)
       }
+      
       if (!options.delay) { 
         options.delay = 0 
       }
@@ -67,11 +67,16 @@ export default {
       window.clearTimeout(this.ctaTimeout)
       this.ctaTimeout = window.setTimeout(() => {
         this.$refs.ctaOverlay.show()
+        this.shown = true
       }, options.delay)
     },
     hide () {
       window.clearTimeout(this.ctaTimeout)
       this.$refs.ctaOverlay.hide()
+    },
+    alreadyShown () {
+      const ctaShowStatus = getSessionStorageItem(this.ctaSessionKey) === 'true'
+      return (ctaShowStatus || this.shown)
     }
   }
 }
