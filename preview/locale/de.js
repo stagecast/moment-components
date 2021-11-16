@@ -21,6 +21,9 @@ export default {
       claim: 'Preis einfordern',
       claimError: 'Du hast diesen Preis bereits beansprucht.',
       claimErrorGeneric: 'Der Preis konnte nicht beansprucht werden. Versuche es noch einmal.'
+    },
+    cta: {
+      errorGeneric: 'Beim Senden ist ein Fehler aufgetreten. Bitte versuche es erneut.'
     }
   }
 }

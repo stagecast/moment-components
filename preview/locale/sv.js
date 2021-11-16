@@ -21,6 +21,9 @@ export default {
       claim: 'Hämta din Vinst',
       claimError: 'Du har redan hämtat ut detta pris.',
       claimErrorGeneric: 'Priset kunde inte hämtas ut. Försök igen senare.'
+    },
+    cta: {
+      errorGeneric: 'Ett fel inträffade. Var vänlig försök igen.'
     }
   }
 }

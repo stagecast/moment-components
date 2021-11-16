@@ -22,6 +22,9 @@ export default {
       claim: 'Ödülünüzü alın',
       claimError: 'Bu ödülü zaten talep ettiniz.',
       claimErrorGeneric: 'Ödül talep edilemedi.  Lütfen daha sonra tekrar deneyiniz.'
+    },
+    cta: {
+      errorGeneric: 'Gönderilirken bir hata oluştu. Lütfen yeniden deneyin.'
     }
   }
 }

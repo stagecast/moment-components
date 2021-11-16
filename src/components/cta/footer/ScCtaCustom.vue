@@ -6,7 +6,7 @@
     <div class="input-group" v-if="custom.userEmailInput">
       <input type="email" class="form-control" :disabled="isInputDisabled" :class="{ disabled: isInputDisabled }" v-model="form.value.email" :placeholder="custom.userEmailInput">
     </div>
-        <button class="main-button" :class="getBtnClass" :disabled="!canSubmit" @click="submitData()">
+    <button class="main-button" :class="getBtnClass" :disabled="!canSubmit" @click="submitData()">
       <span v-if="submitStatus !== 'SUCCESS'">{{ custom.buttonLabel || 'Submit' }}</span>
       <span v-else>
         <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,7 @@
         </svg>
       </span>
     </button>
-    <div class="error-message text-red" v-if="submitStatus && submitStatus.startsWith('ERROR')" >{{ getErrorMessage }}</div>
+    <div class="error-message" v-if="submitStatus && submitStatus.startsWith('ERROR')" >{{ getErrorMessage }}</div>
   </div>
 </template>
 

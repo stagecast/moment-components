@@ -27,7 +27,7 @@ export default {
       },
       cta: {
         // type: 'website',
-        type: 'feedback',
+        type: 'leadgen',
         showOnce: false,
         createdTimestamp: 12345,
         headline: 'This is my Cta headline',
@@ -37,7 +37,7 @@ export default {
           buttonLink: 'https://stagecast.io',
           userNameInput: 'Type your name...',
           userEmailInput: 'Type your email...',
-          buttonLabel: 'Submit Feedback'
+          buttonLabel: 'Submit Leadgen'
           // facebook: 'https://www.facebook.com/wearestagecast',
           // instagram: 'https://www.instagram.com/wearestagecast/',
           // twitch: 'https://stagecast.io',

@@ -131,7 +131,7 @@ export default {
         })
         .catch((error) => { //eslint-disable-line
           this.submitStatus = 'ERROR_GENERIC'
-          this.submitErrorMessage = this.$t('scComponents.cta.errorGeneric')
+          this.submitErrorMessage = this.t('scComponents.cta.errorGeneric')
           this.submitting = false
         })
     },
