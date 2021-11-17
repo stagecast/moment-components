@@ -21,7 +21,7 @@
 
 <script>
 import '../../../styles/main.scss'
-
+import { hasOwnProperty } from '../../../utils'
 class FormHanlder {
 
   constructor (validators) {
@@ -163,8 +163,8 @@ export default {
     },
     delayedPopupClose (timeout = 3000) {
       window.setTimeout(() => {
-        if (this.popupRef) {
-          this.popupRef.hide()
+        if (hasOwnProperty(this.popupRef, 'ctaOverlay')) {          
+          this.popupRef.ctaOverlay.hide()
         }
       }, timeout)
     }

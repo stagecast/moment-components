@@ -12,6 +12,7 @@
 
 <script>
 import '../../../styles/main.scss'
+import { hasOwnProperty } from '../../../utils'
 
 export default {
   name: 'ScCtaWebsite',
@@ -34,8 +35,8 @@ export default {
       this.trackClick()
       window.open(this.custom.buttonLink, '_blank', 'noopener')
       window.setTimeout(() => {
-        if (this.popupRef) {
-          this.popupRef.hide()
+        if (hasOwnProperty(this.popupRef, 'ctaOverlay')) {
+          this.popupRef.ctaOverlay.hide()
         }
       }, 100)
     },

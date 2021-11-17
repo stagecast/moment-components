@@ -12,10 +12,10 @@
       </div>
     </div>
     <div class="box-footer">
-      <ScCtaWebsite :custom="cta.custom" :popupRef="popupRef.ctaOverlay" v-if="ofType(['website'])"></ScCtaWebsite>
-      <ScCtaSocial :custom="cta.custom" :popupRef="popupRef.ctaOverlay" v-if="ofType(['social'])"></ScCtaSocial>
-      <ScCtaFeedback :custom="cta.custom" :popupRef="popupRef.ctaOverlay" v-if="ofType(['feedback'])"></ScCtaFeedback>
-      <ScCtaCustom :custom="cta.custom" :popupRef="popupRef.ctaOverlay" v-if="ofType(['leadgen', 'newsletter', 'promotion'])"></ScCtaCustom>
+      <ScCtaWebsite :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['website'])"></ScCtaWebsite>
+      <ScCtaSocial :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['social'])"></ScCtaSocial>
+      <ScCtaFeedback :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['feedback'])"></ScCtaFeedback>
+      <ScCtaCustom :custom="cta.custom" :popupRef="popupRef" v-if="ofType(['leadgen', 'newsletter', 'promotion'])"></ScCtaCustom>
     </div>
   </div>
 </template>
@@ -43,7 +43,9 @@ export default {
     }
   },
   data: function () {
-    return {}
+    return {
+      ctaData: undefined
+    }
   },
   computed: {
     getHeader () {
@@ -54,14 +56,6 @@ export default {
   },
   mounted: function () {},
   methods: {
-    handleClick () {
-      this.trackClick()
-      window.open(this.cta.buttonLink, '_blank')
-      window.setTimeout(() => {
-        this.hide()
-      }, 100)
-    },
-    trackClick () {},
     ofType(list) {
       return list.includes(this.cta.type)
     }

@@ -9,6 +9,11 @@
         <ScPrizeClaimPopup ref="prize" :options="prizeOptions" :manualTrigger="true" :profile="{}" :prize="prize"></ScPrizeClaimPopup>
         <ScCtaPopup ref="cta" :cta="cta" :manualTrigger="true"></ScCtaPopup>
       </div>
+      <div style="margin-top: 24px">
+        <button @click="showPrize()">Show Prize</button>
+        <button @click="showCta()">Show CTA</button>
+        <button @click="toggleShowOnce()">Show Once: {{cta.showOnce}}</button>
+      </div>
     </div>
     <ScSponsorBanner :sponsor="sponsor"></ScSponsorBanner>
     <ScFooter :theme="theme"></ScFooter>
@@ -104,8 +109,19 @@ export default {
     }
   },
   mounted: function () {
-    // this.$refs.prize.show()
-    this.$refs.cta.show({ delay: 1000 })
+    // this.showPrize()
+    this.showCta()
+  },
+  methods: {
+    showCta () {
+      this.$refs.cta.show({ delay: 1000 })
+    },
+    showPrize () {
+      this.$refs.prize.show()
+    },
+    toggleShowOnce () {
+      this.cta.showOnce = !this.cta.showOnce
+    }
   }
 }
 </script>

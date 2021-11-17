@@ -34,6 +34,7 @@ export default {
   data: function () {
     return {
       ctaTimeout: undefined,
+      ctaData: undefined,
       // flag to prevent the CTA.onlyOnce from appearing everytime (it is used only when the 
       // createdTimestamp is not set).
       shown: false
@@ -51,24 +52,26 @@ export default {
   },
   mounted: function () {},
   methods: {
+
+    /**
+     * Show popup after a few checks
+     */
     show (options = { delay: 0 }) {
-      // prevent showing if the cta has already been shown and the CTA is set to be shown once.
-      if (this.cta.showOnce && this.alreadyShown()) { 
-        return 
-      }
-      if (this.ctaSessionKey) {
-        setSessionStorageItem(this.ctaSessionKey, true)
+      
+      if (this.canOpenPopup()) {
+        
+        if (this.ctaSessionKey) {
+          // if a session key is provided, set it in the session storage
+          setSessionStorageItem(this.ctaSessionKey, true)
+        }
+  
+        this.checkSubmittedData()
+          .then(data => { this.ctaData = data })
+          .catch(() => { //eslint-disable-line
+            this.delayedOpen(options.delay || 0)
+          }) 
       }
       
-      if (!options.delay) { 
-        options.delay = 0 
-      }
-
-      window.clearTimeout(this.ctaTimeout)
-      this.ctaTimeout = window.setTimeout(() => {
-        this.$refs.ctaOverlay.show()
-        this.shown = true
-      }, options.delay)
     },
     hide () {
       window.clearTimeout(this.ctaTimeout)
@@ -77,7 +80,34 @@ export default {
     alreadyShown () {
       const ctaShowStatus = getSessionStorageItem(this.ctaSessionKey) === 'true'
       return (ctaShowStatus || this.shown)
-    }
+    },
+    /**
+     * Prevent showing if the user has already submitted their data
+     * or the CTA has already been shown and the CTA is set to be shown once.
+     */
+    canOpenPopup () {
+      if (this.cta.type !== 'website' && this.ctaData) { return false }
+      if (this.cta.showOnce && this.alreadyShown()) { return false }
+      return true
+    },
+    delayedOpen (delay) {
+      window.clearTimeout(this.ctaTimeout)
+      this.ctaTimeout = window.setTimeout(() => {
+        this.$refs.ctaOverlay.show()
+        this.shown = true
+      }, delay)
+    },
+    /**
+     * If the Promise is rejected, no data is defined and the 
+     * popup can be opened.
+     */
+    checkSubmittedData () {
+      if (!this.$SDK || this.cta.type === 'website') {
+        return Promise.reject(null)
+      }
+      
+      return this.$SDK.activation.cta.getData()
+    },
   }
 }
 </script>

@@ -52,3 +52,6 @@ export function getSessionStorageItem (item) {
   }
 }
 
+export function hasOwnProperty (obj, prop) {
+  return obj && Object.prototype.hasOwnProperty.call(obj, prop)
+}
