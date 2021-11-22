@@ -1,6 +1,6 @@
 {
   "name": "@stagecast/activation-components",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "author": "Filippo Boiani <filippo@stagecast.se>",
   "private": false,
   "main": "./lib/activation-components.common.js",
