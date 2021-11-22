@@ -25,7 +25,7 @@ export default {
 
   .stagecast-footer {
     color: #686868;
-    background: var(--bg-color-2);
+    background: var(--sac-bg-color-2);
     text-align: center;
     padding: 12px 0;
     margin: auto 0 0 0;

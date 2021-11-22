@@ -52,9 +52,9 @@
           <div class="input-group-prepend" :class="buttonClasses">
             <span>
               <svg v-if="!copiedToClipboard" width="24" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.142 19.9639C12.6358 19.9639 11.1586 19.3846 10 18.255L7.71183 15.9668C7.2484 15.5034 7.2484 14.7792 7.71183 14.3158C8.17527 13.8524 8.89939 13.8524 9.36282 14.3158L11.651 16.604C13.0413 17.9943 15.2716 17.9943 16.633 16.604C18.0233 15.2137 18.0233 12.9834 16.633 11.6221L14.3447 9.33388C13.8813 8.87044 13.8813 8.14632 14.3447 7.68289C14.8082 7.21945 15.5323 7.21945 15.9957 7.68289L18.2839 9.9711C20.5722 12.2593 20.5722 15.9668 18.2839 18.226C17.1254 19.3846 15.6482 19.9639 14.142 19.9639Z" fill="var(--btn-text-color-1)"/>
-                <path d="M4.81538 12.5779C4.52573 12.5779 4.23609 12.4621 4.00437 12.2303L1.71616 9.9711C-0.572053 7.68288 -0.572053 3.9754 1.71616 1.71616C4.00437 -0.572053 7.71185 -0.572053 9.9711 1.71616L12.2593 4.00437C12.7227 4.4678 12.7227 5.19192 12.2593 5.65536C11.7959 6.11879 11.0718 6.11879 10.6083 5.65536L8.32011 3.36715C7.65392 2.70096 6.75601 2.32442 5.82914 2.32442C4.87331 2.32442 4.00437 2.70096 3.33818 3.36715C1.94788 4.75745 1.94788 6.98773 3.33818 8.34907L5.62639 10.6373C6.08983 11.1007 6.08983 11.8248 5.62639 12.2883C5.42364 12.4621 5.10503 12.5779 4.81538 12.5779Z" fill="var(--btn-text-color-1)"/>
-                <path d="M11.8535 12.9834C11.5639 12.9834 11.2742 12.8676 11.0425 12.6358L7.30607 8.92837C6.84264 8.46493 6.84264 7.74081 7.30607 7.27738C7.76951 6.81394 8.49362 6.81394 8.95706 7.27738L12.6935 11.0138C13.1569 11.4773 13.1569 12.2014 12.6935 12.6648C12.4618 12.8676 12.1721 12.9834 11.8535 12.9834Z" fill="var(--btn-text-color-1)"/>
+                <path d="M14.142 19.9639C12.6358 19.9639 11.1586 19.3846 10 18.255L7.71183 15.9668C7.2484 15.5034 7.2484 14.7792 7.71183 14.3158C8.17527 13.8524 8.89939 13.8524 9.36282 14.3158L11.651 16.604C13.0413 17.9943 15.2716 17.9943 16.633 16.604C18.0233 15.2137 18.0233 12.9834 16.633 11.6221L14.3447 9.33388C13.8813 8.87044 13.8813 8.14632 14.3447 7.68289C14.8082 7.21945 15.5323 7.21945 15.9957 7.68289L18.2839 9.9711C20.5722 12.2593 20.5722 15.9668 18.2839 18.226C17.1254 19.3846 15.6482 19.9639 14.142 19.9639Z" fill="var(--sac-btn-text-color-1)"/>
+                <path d="M4.81538 12.5779C4.52573 12.5779 4.23609 12.4621 4.00437 12.2303L1.71616 9.9711C-0.572053 7.68288 -0.572053 3.9754 1.71616 1.71616C4.00437 -0.572053 7.71185 -0.572053 9.9711 1.71616L12.2593 4.00437C12.7227 4.4678 12.7227 5.19192 12.2593 5.65536C11.7959 6.11879 11.0718 6.11879 10.6083 5.65536L8.32011 3.36715C7.65392 2.70096 6.75601 2.32442 5.82914 2.32442C4.87331 2.32442 4.00437 2.70096 3.33818 3.36715C1.94788 4.75745 1.94788 6.98773 3.33818 8.34907L5.62639 10.6373C6.08983 11.1007 6.08983 11.8248 5.62639 12.2883C5.42364 12.4621 5.10503 12.5779 4.81538 12.5779Z" fill="var(--sac-btn-text-color-1)"/>
+                <path d="M11.8535 12.9834C11.5639 12.9834 11.2742 12.8676 11.0425 12.6358L7.30607 8.92837C6.84264 8.46493 6.84264 7.74081 7.30607 7.27738C7.76951 6.81394 8.49362 6.81394 8.95706 7.27738L12.6935 11.0138C13.1569 11.4773 13.1569 12.2014 12.6935 12.6648C12.4618 12.8676 12.1721 12.9834 11.8535 12.9834Z" fill="var(--sac-btn-text-color-1)"/>
               </svg>
               <svg v-else width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.25948 10.9476L9.16157 17L18.5233 1.79999" stroke="white" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -171,12 +171,12 @@ export default {
   @import '../../styles/variables';
   
   ::selection {
-    color: var(--text-color-1-inverted);
-    background: var(--bg-color-2-inverted);
+    color: var(--sac-text-color-1-inverted);
+    background: var(--sac-bg-color-2-inverted);
   }
 
   .bg-dark {
-    background: var(--bg-color-2-inverted) !important;
+    background: var(--sac-bg-color-2-inverted) !important;
   }
   .bg-green {
     background: $color-green !important;
@@ -191,7 +191,7 @@ export default {
 
     &:focus-within {
       .input-group-prepend {
-        border-color: var(--input-color-2);
+        border-color: var(--sac-input-color-2);
       }
     }
 
@@ -201,7 +201,7 @@ export default {
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
       height: 50px;
-      background: var(--bg-color-2-inverted);
+      background: var(--sac-bg-color-2-inverted);
 
       span {
         display: flex;
@@ -220,7 +220,7 @@ export default {
       border-radius: 7px;
       border-top-left-radius: 0px;
       border-bottom-left-radius: 0px;
-      border: 2px solid var(--bg-color-4);
+      border: 2px solid var(--sac-bg-color-4);
       border-left: none;
       height: 50px;
       font-family: $base-font-stack;
@@ -229,8 +229,8 @@ export default {
       font-size: 18px;
       line-height: 30px;
 
-      background: var(--input-color-1);
-      color: var(--input-text-color-1);
+      background: var(--sac-input-color-1);
+      color: var(--sac-input-text-color-1);
       padding-left: 18px;
       padding-right: 18px;
       outline: none;
@@ -244,16 +244,16 @@ export default {
       }
 
       &:focus {
-        border-color: var(--input-color-2);
+        border-color: var(--sac-input-color-2);
       }
     }
   }
 
   a, .link {
     text-decoration: underline;
-    color: var(--text-color-1);
+    color: var(--sac-text-color-1);
     &:active, &:hover, &:visited {
-      color: var(--text-color-2)
+      color: var(--sac-text-color-2)
     }
   }
   
@@ -274,7 +274,7 @@ export default {
       height: 50px;
       line-height: 50px;
       vertical-align: center;
-      border-bottom: 2px solid var(--bg-color-4);
+      border-bottom: 2px solid var(--sac-bg-color-4);
       font-weight: $font-weight-bold;
       width: 100%;
       white-space: nowrap;
@@ -288,7 +288,7 @@ export default {
 
       &.selected {
         opacity: 1;
-        border-bottom: 2px solid var(--bg-color-2-inverted);
+        border-bottom: 2px solid var(--sac-bg-color-2-inverted);
       }
     }
   }
@@ -299,7 +299,7 @@ export default {
     width: 100%;
 
     ul {
-      list-style-image: var(--list-style-image);
+      list-style-image: var(--sac-list-style-image);
       margin: 16px 0;
 
       li {
@@ -313,8 +313,8 @@ export default {
     padding: 20px;
     overflow: hidden;
     border-radius: 10px;
-    background: var(--bg-color-2);
-    color: var(--text-color-1);
+    background: var(--sac-bg-color-2);
+    color: var(--sac-text-color-1);
 
     .bottom-padder {
       padding-bottom: 106px;
@@ -347,11 +347,11 @@ export default {
     .header-info {
       text-align: center;
       padding: 20px 55px;
-      background: var(--bg-color-2);
+      background: var(--sac-bg-color-2);
       font-weight: $font-weight-bold;
       font-size: 22px;
       line-height: 28px;
-      color: var(--text-color-1);
+      color: var(--sac-text-color-1);
       margin: -25px -25px 5px -25px;
 
       &.with-image {
@@ -370,7 +370,7 @@ export default {
       left: 0;
       width: calc(100% + 48px);
       margin: 0 -24px -20px -24px;
-      background: var(--bg-color-2);
+      background: var(--sac-bg-color-2);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       padding: 20px 25px 21px 25px;
     }
@@ -382,7 +382,7 @@ export default {
     .input-group {
       .form-control {
         border-right: none;
-        border-left: 2px solid var(--bg-color-4);
+        border-left: 2px solid var(--sac-bg-color-4);
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
         border-top-left-radius: 6px;
@@ -397,7 +397,7 @@ export default {
     }
 
     ul {
-      list-style-image: var(--list-style-image-rtl);
+      list-style-image: var(--sac-list-style-image-rtl);
       margin: 16px 0;
     }
   }

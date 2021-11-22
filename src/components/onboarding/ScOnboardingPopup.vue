@@ -110,7 +110,7 @@ export default {
 
   .help-button {
     border: none;
-    background: var(--bg-color-2);
+    background: var(--sac-bg-color-2);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
     padding: 5px 13px;
@@ -118,7 +118,7 @@ export default {
     font-size: 23px;
     font-weight: 700;
     line-height: 26px;
-    color: var(--text-color-2);
+    color: var(--sac-text-color-2);
     outline: none;
     // height: 36px;
     width: 36px;

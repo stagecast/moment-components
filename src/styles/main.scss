@@ -43,18 +43,18 @@
   height: 23px;
   width: 23px;
   background-color: transparent;
-  border: 2px solid var(--btn-color-1);
+  border: 2px solid var(--sac-btn-color-1);
   border-radius: 6px;
 }
 
 /* On mouse-over, add a grey background color */
 .mc-checkbox:hover input ~ .mc-checkmark {
-  background-color: var(--input-color-2);
+  background-color: var(--sac-input-color-2);
 }
 
 /* When the checkbox is checked, add a blue background */
 .mc-checkbox input:checked ~ .mc-checkmark {
-  background-color: var(--btn-color-1);
+  background-color: var(--sac-btn-color-1);
 }
 
 /* Create the mc-checkmark/indicator (hidden when not checked) */
@@ -67,7 +67,7 @@
 /* Show the mc-checkmark when checked */
 .mc-checkbox input:checked ~ .mc-checkmark:after {
   display: block;
-  background-image: var(--checkbox-icon);
+  background-image: var(--sac-checkbox-icon);
 }
 
 /* Style the mc-checkmark/indicator */
@@ -108,7 +108,7 @@
     flex: 1 1 auto;
     width: 1%;
     border-radius: 7px;
-    border: 2px solid var(--bg-color-4);
+    border: 2px solid var(--sac-bg-color-4);
     height: 50px;
     font-family: $base-font-stack;
     font-style: normal;
@@ -116,8 +116,8 @@
     font-size: 18px;
     line-height: 30px;
 
-    background: var(--input-color-1);
-    color: var(--input-text-color-1);
+    background: var(--sac-input-color-1);
+    color: var(--sac-input-text-color-1);
     padding-left: 18px;
     padding-right: 18px;
     outline: none;
@@ -131,7 +131,7 @@
     }
 
     &:focus {
-      border-color: var(--input-color-2);
+      border-color: var(--sac-input-color-2);
     }
 
     &:disabled, &.disbaled {
@@ -153,8 +153,8 @@
 .main-button {
   text-decoration: none;
   text-align: center;
-  background: var(--btn-color-1);
-  color: var(--btn-text-color-1);
+  background: var(--sac-btn-color-1);
+  color: var(--sac-btn-text-color-1);
   border: none;
   border-radius: 7px;
   height: 60px;
@@ -168,7 +168,7 @@
   padding: 0 50px;
 
   &:not(:disabled):active, &:not(:disabled):focus, &:not(:disabled):hover {
-    color: var(--btn-text-color-1) !important;
+    color: var(--sac-btn-text-color-1) !important;
     transform: scale(0.97);
     transition: all .3s ease-out;
   }

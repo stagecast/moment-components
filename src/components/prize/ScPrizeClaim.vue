@@ -46,8 +46,8 @@
           </svg>
           {{ prize.fulfillment.config.claimLabel || t('scComponents.prize.claim') }}
           <svg class="icon icon-right" v-if="ofType('website-visits')" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.2678 19.1097H1.96743V5.78748H10.6378L12.2757 4.14951H1.13752C0.678891 4.14951 0.307617 4.52078 0.307617 4.97941V19.9396C0.307617 20.3982 0.678891 20.7695 1.13752 20.7695H16.0758C16.5345 20.7695 16.9057 20.3982 16.9057 19.9396V8.80135L15.2678 10.4393V19.1097Z" fill="var(--btn-text-color-1)"/>
-            <path d="M20.2473 0H14.2851C13.8265 0 13.4552 0.371274 13.4552 0.829906C13.4552 1.28854 13.8265 1.65981 14.2851 1.65981H18.2599L9.85165 10.0681C9.52406 10.3957 9.52406 10.898 9.85165 11.2256C10.0045 11.3785 10.2229 11.4658 10.4413 11.4658C10.6597 11.4658 10.8563 11.3785 11.031 11.2256L19.4393 2.79547V6.77029C19.4393 7.22892 19.8105 7.60019 20.2692 7.60019C20.7278 7.60019 21.0991 7.22892 21.0991 6.77029V0.829906C21.0772 0.371274 20.706 0 20.2473 0Z" fill="var(--btn-text-color-1)"/>
+            <path d="M15.2678 19.1097H1.96743V5.78748H10.6378L12.2757 4.14951H1.13752C0.678891 4.14951 0.307617 4.52078 0.307617 4.97941V19.9396C0.307617 20.3982 0.678891 20.7695 1.13752 20.7695H16.0758C16.5345 20.7695 16.9057 20.3982 16.9057 19.9396V8.80135L15.2678 10.4393V19.1097Z" fill="var(--sac-btn-text-color-1)"/>
+            <path d="M20.2473 0H14.2851C13.8265 0 13.4552 0.371274 13.4552 0.829906C13.4552 1.28854 13.8265 1.65981 14.2851 1.65981H18.2599L9.85165 10.0681C9.52406 10.3957 9.52406 10.898 9.85165 11.2256C10.0045 11.3785 10.2229 11.4658 10.4413 11.4658C10.6597 11.4658 10.8563 11.3785 11.031 11.2256L19.4393 2.79547V6.77029C19.4393 7.22892 19.8105 7.60019 20.2692 7.60019C20.7278 7.60019 21.0991 7.22892 21.0991 6.77029V0.829906C21.0772 0.371274 20.706 0 20.2473 0Z" fill="var(--sac-btn-text-color-1)"/>
           </svg>
         </button>
         <div class="submit-message" :class="{'text-red': submitStatus !== 'SUCCESS'}" v-if="submitStatus || previewMode" >{{ getSubmitMessage }}</div>
@@ -375,12 +375,12 @@ export default {
   @import '../../styles/variables';
   
   ::selection {
-    color: var(--text-color-1-inverted);
-    background: var(--bg-color-2-inverted);
+    color: var(--sac-text-color-1-inverted);
+    background: var(--sac-bg-color-2-inverted);
   }
 
   .bg-dark {
-    background: var(--bg-color-2-inverted) !important;
+    background: var(--sac-bg-color-2-inverted) !important;
   }
   .bg-green {
     background: $color-green !important;
@@ -391,9 +391,9 @@ export default {
 
   a, .link {
     text-decoration: underline;
-    color: var(--text-color-1);
+    color: var(--sac-text-color-1);
     &:active, &:hover, &:visited {
-      color: var(--text-color-2)
+      color: var(--sac-text-color-2)
     }
   }
   
@@ -409,8 +409,8 @@ export default {
     padding: 20px;
     border-radius: 10px;
     overflow: hidden;
-    background: var(--bg-color-2);
-    color: var(--text-color-1);
+    background: var(--sac-bg-color-2);
+    color: var(--sac-text-color-1);
 
     .prize-image {
       margin: 20px 0;
@@ -436,11 +436,11 @@ export default {
     .header-info {
       text-align: center;
       padding: 20px 55px;
-      background: var(--bg-color-2);
+      background: var(--sac-bg-color-2);
       font-weight: $font-weight-bold;
       font-size: 22px;
       line-height: 28px;
-      color: var(--text-color-1);
+      color: var(--sac-text-color-1);
       margin: -25px -25px 5px -25px;
 
       &.with-image {
@@ -467,7 +467,7 @@ export default {
     .input-group {
       .form-control {
         border-right: none;
-        border-left: 2px solid var(--bg-color-4);
+        border-left: 2px solid var(--sac-bg-color-4);
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
         border-top-left-radius: 6px;
@@ -482,7 +482,7 @@ export default {
     }
 
     ul {
-      list-style-image: var(--list-style-image-rtl);
+      list-style-image: var(--sac-list-style-image-rtl);
       margin: 16px 0;
     }
   }

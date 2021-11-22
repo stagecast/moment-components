@@ -71,8 +71,8 @@ export default {
     width: 96%;
     max-width: 400px;
     margin: 10px auto;
-    background: var(--bg-color-2);
-    color: var(--text-color-1);
+    background: var(--sac-bg-color-2);
+    color: var(--sac-text-color-1);
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
@@ -98,7 +98,7 @@ export default {
     justify-content: center;
     align-items: center;
     background: #848484;
-    color: var(--text-color-1-inverted);
+    color: var(--sac-text-color-1-inverted);
     outline: none;
     position: absolute;
     z-index: 1000;

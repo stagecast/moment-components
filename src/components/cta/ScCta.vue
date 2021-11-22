@@ -68,17 +68,17 @@ export default {
   @import '../../styles/variables';
   .cta-box {
     border-radius: 10px;
-    background: var(--bg-color-2);
-    color: var(--text-color-1);
+    background: var(--sac-bg-color-2);
+    color: var(--sac-text-color-1);
 
     .box-header {
       text-align: center;
       padding: 24px 48px;
-      background: var(--bg-color-2);
+      background: var(--sac-bg-color-2);
       font-weight: $font-weight-bold;
       font-size: 22px;
       line-height: 28px;
-      color: var(--text-color-1);
+      color: var(--sac-text-color-1);
       min-height: 75px;
       display: flex;
       align-items: center;
