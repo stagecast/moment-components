@@ -95,6 +95,9 @@ Vue.use(StagecastComponents, {
 ## Develop
 
 ### Test Preview
+
+The preview is needed to preview the component configuration in the Stagecast Platform.
+
 1. run `npm run serve:preview`
 2. open `/test.html`
 
