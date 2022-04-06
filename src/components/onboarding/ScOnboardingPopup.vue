@@ -34,6 +34,7 @@ export default {
         return {
           title: 'Activation Help',
           headerImg: null,
+          openOnLoad: true,
           // the activationId can either be the real activationId or the activation activeChangeTime.
           // It is only needed as a semi-unique id to store the modal state on sessionStorage and cookie.
           activationId: undefined,
@@ -54,11 +55,13 @@ export default {
     }
   },
   mounted: function () {
-    window.setTimeout(function () {
+    if (this.options.openOnLoad) {
+      window.setTimeout(function () {
       if (!this.isOnboarded()) {
         this.show()
       }
     }.bind(this), 300)
+    }
   },
   methods: {
     /**
