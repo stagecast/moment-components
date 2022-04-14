@@ -205,9 +205,9 @@ export default {
     }
   },
   mounted: function () {
+    this.resetState()
     this.checkProfile(this.profile)
     this.checkPrize(this.prize)
-    this.resetState()
   },
   methods: {
     /**
