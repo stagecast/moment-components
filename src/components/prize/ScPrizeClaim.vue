@@ -100,7 +100,7 @@ class FormHanlder {
   validateInput (type, value) {
     this.dirty = true
     this.valid[type] = this.validators[type](value)
-    this.status = Object.values(this.valid).filter(v => v === false).length ? 'INVALID' : 'VALID'
+    this._checkStatus()
   }
 
   /**
@@ -108,6 +108,11 @@ class FormHanlder {
    */
   skipProperty (name) {
     this.valid[name] = true
+    this._checkStatus()
+  }
+
+  _checkStatus () {
+    this.status = Object.values(this.valid).filter(v => v === false).length ? 'INVALID' : 'VALID'
   }
       
 }
@@ -235,19 +240,20 @@ export default {
       if (prize && !prize.fulfillment) {
         prize.fulfillment = { config: {} }
       }
-      // autocheck if terms are not specified
+      // skip inputs that are not specified
       this.skipProperties(prize)
     },
 
     skipProperties (prize) {
-      if (prize && !prize.fulfillment.config.termsUrl) {
+      const fulfillmentConfig = prize.fulfillment.config
+
+      if (prize && !fulfillmentConfig.termsUrl) {
         this.form.skipProperty('checkbox')
-        this.form.value.checkbox = true
       }
-      if (prize && !prize.fulfillment.config.nameInput) {
+      if (prize && !fulfillmentConfig.nameInput) {
         this.form.skipProperty('name')
       }
-      if (prize && !prize.fulfillment.config.emailInput) {
+      if (prize && !fulfillmentConfig.emailInput) {
         this.form.skipProperty('email')
       }
     },
